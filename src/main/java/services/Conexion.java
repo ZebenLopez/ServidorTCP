@@ -14,10 +14,14 @@ public class Conexion {
         ServerSocket serverSocket = new ServerSocket(port);
 
         while (true) {
-            while (true) {
+            try {
                 Socket connectionSocket = serverSocket.accept();
                 new ClientHandler(connectionSocket).start();
+                System.out.println("Conectado al cliente");
+            } catch (IOException e) {
+                System.out.println("Error al conectar al cliente");
             }
         }
+
     }
 }

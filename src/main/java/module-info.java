@@ -3,6 +3,9 @@ module org.example.servidortcpfx {
     requires javafx.fxml;
 
 
-    opens org.example.servidortcpfx to javafx.fxml;
-    exports org.example.servidortcpfx;
+
+    exports controller;
+    opens controller to javafx.fxml;
+    exports view;
+    opens view to javafx.fxml;
 }

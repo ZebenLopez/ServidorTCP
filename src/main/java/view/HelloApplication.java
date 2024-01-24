@@ -1,13 +1,26 @@
-package org.example.servidortcpfx;
+package view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import services.Conexion;
 
 import java.io.IOException;
 
 public class HelloApplication extends Application {
+
+    @Override
+    public void init() throws Exception {
+        new Thread(()->{
+            Conexion conexion = new Conexion();
+            try {
+                conexion.conectar();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
+    }
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
@@ -17,7 +30,6 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
-        launch();
+    public static void main(String[] args) throws IOException { launch();
     }
 }

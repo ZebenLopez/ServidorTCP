@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="429.0" prefWidth="600.0" stylesheets="@../style/style-etiquetas.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControladorController">
+    <children>
+        <ImageView fitHeight="451.0" fitWidth="721.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../images/grafica.jpg" />
+        </ImageView>
+        <TabPane layoutX="206.0" layoutY="5.0" prefHeight="394.0" prefWidth="395.0" tabClosingPolicy="UNAVAILABLE">
+            <Tab text="Control">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="394.0" prefWidth="413.0" styleClass="control">
+                    <Label fx:id="cpuLabel" layoutX="253.0" layoutY="70.0" styleClass="etiquetas" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="29.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="47.0" layoutY="20.0" styleClass="etiquetas" text="Siatema" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="29.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="47.0" layoutY="70.0" styleClass="etiquetas" text="\% CPU" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="29.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="47.0" layoutY="120.0" styleClass="etiquetas" text="\% RAM" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="29.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="118.0" layoutY="183.0" styleClass="etiquetas" text="Almacenamiento" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="20.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="47.0" layoutY="220.0" styleClass="etiquetas" text="Total" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="29.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="sistema" layoutX="204.0" layoutY="20.0" styleClass="etiquetas" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="29.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="47.0" layoutY="270.0" styleClass="etiquetas" text="Libre" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="29.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="memoriaLabel" layoutX="253.0" layoutY="120.0" styleClass="etiquetas" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="29.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="espacioDisco" layoutX="253.0" layoutY="220.0" styleClass="etiquetas" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="29.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="libreDisco" layoutX="253.0" layoutY="270.0" styleClass="etiquetas" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="29.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="porcentajeDisco" layoutX="253.0" layoutY="320.0" styleClass="etiquetas" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="29.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="47.0" layoutY="320.0" styleClass="etiquetas" text="Ocupado" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="29.0" />
+                        </font>
+                    </Label>
+                </AnchorPane>
+            </Tab>
+            <Tab text="Alertas">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </Tab>
+            <Tab text="Reportes">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </Tab>
+        </TabPane>
+        <ScrollPane layoutY="56.0" prefHeight="374.0" prefWidth="203.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="374.0" prefWidth="203.0" styleClass="scrollPanel">
+            <children>
+               <ListView fx:id="lista" prefHeight="374.0" prefWidth="200.0" />
+            </children></AnchorPane>
+        </ScrollPane>
+      <Label layoutX="46.0" layoutY="15.0" styleClass="etiquetas" text="Clientes" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

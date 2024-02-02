@@ -2,6 +2,9 @@ module org.example.servidortcpfx {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.google.gson;
+    requires jasperreports;
+    requires opencsv;
+    requires java.sql;
 
 
     exports controller;

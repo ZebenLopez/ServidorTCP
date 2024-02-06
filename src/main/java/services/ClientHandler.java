@@ -4,15 +4,18 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.net.Socket;
 import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import controller.ControladorController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
-import javafx.scene.control.Alert;
+/**
+ *
+ * @author Zebenzuí López Conde
+ * @version 1.0
+ * 2ºA DAM
+ */
 
 public class ClientHandler extends Thread {
     private PrintWriter csvWriter;
@@ -38,22 +41,9 @@ public class ClientHandler extends Thread {
     private final Socket clientSocket;
 
     // Constructor
-//    public ClientHandler(Socket connectionSocket) {
-//        this.clientSocket = connectionSocket;
-//        this.controladorController = new ControladorController();
-//        clientHandlers.put(identificador, this); // Añade este ClientHandler al mapa
-//    }
-    // Constructor
     public ClientHandler(Socket connectionSocket) {
         this.clientSocket = connectionSocket;
         this.controladorController = new ControladorController();
-    }
-
-    private void onClientConnected() throws InterruptedException {
-        clientIdentifiers.add(identificador);
-        controladorController.actualizarDatosCliente(identificador); // Actualiza la lista de clientes en el ListView
-        controladorController.enviarAlertas(identificador); // Envía alertas al cliente
-        System.out.println("Cliente conectado: " + identificador);
     }
 
     @Override
@@ -183,18 +173,6 @@ public class ClientHandler extends Thread {
 
     public double getPorcentajeOcupado() {
         return porcentajeOcupado;
-    }
-
-    public String getUsb() {
-        return usb;
-    }
-
-    public String getIdentificador() {
-        return identificador;
-    }
-
-    public Socket getClientSocket() {
-        return clientSocket;
     }
 
     public void enviarAlerta(String alerta) {

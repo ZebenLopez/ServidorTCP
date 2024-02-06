@@ -4,6 +4,12 @@ import controller.ControladorController;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
+/**
+ *
+ * @author Zebenzuí López Conde
+ * @version 1.0
+ * 2ºA DAM
+ */
 public class MonitoreoAlertas {
     ControladorController controladorController;
 

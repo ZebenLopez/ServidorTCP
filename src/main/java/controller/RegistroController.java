@@ -6,11 +6,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import models.User;
 import view.HelloApplication;
-import view.RegistroView;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+/**
+ *
+ * @author Zebenzuí López Conde
+ * @version 1.0
+ * 2ºA DAM
+ */
 
 public class RegistroController {
     public TextField usuario;

@@ -1,11 +1,14 @@
 package services;
 
-import controller.ControladorController;
-import javafx.scene.control.Alert;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+/**
+ *
+ * @author Zebenzuí López Conde
+ * @version 1.0
+ * 2ºA DAM
+ */
 
 public class Conexion {
     public void conectar() throws IOException {

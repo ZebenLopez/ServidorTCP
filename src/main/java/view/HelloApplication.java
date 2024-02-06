@@ -1,13 +1,16 @@
 package view;
 
-import controller.ControladorController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import services.Conexion;
-
 import java.io.IOException;
+/**
+ *
+ * @author Zebenzuí López Conde
+ * @version 1.0
+ * 2ºA DAM
+ */
 
 public class HelloApplication extends Application {
 

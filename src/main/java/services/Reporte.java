@@ -12,40 +12,18 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+/**
+ *
+ * @author Zebenzuí López Conde
+ * @version 1.0
+ * 2ºA DAM
+ */
 
 public class Reporte {
 
     private static final String rutaReporte = "./Reporte.jrxml";
     private static String rutaCSV;
     private static Map<String, JasperPrint> jasperPrints = new HashMap<>();
-
-//    public static void generarReporte() throws JRException {
-//        new Thread(() -> {
-//            try {
-//                File reporte = new File(rutaReporte);
-//                if (!reporte.exists()) {
-//                    throw new FileNotFoundException("No se encontró el archivo " + rutaReporte);
-//                }
-//
-//                File csv = new File(rutaCSV);
-//                if (!csv.exists()) {
-//                    throw new FileNotFoundException("No se encontró el archivo " + rutaCSV);
-//                }
-//
-//                JasperReport jasperReport = JasperCompileManager.compileReport(rutaReporte);
-//                JRCsvDataSource dataSource = new JRCsvDataSource(csv);
-//                dataSource.setRecordDelimiter("\n");
-//                dataSource.setFieldDelimiter(';');
-//                dataSource.setColumnNames(new String[]{"sistema", "usuario", "cpu", "memoria", "espacioDisco", "espacioLibre", "porcentajeOcupado", "usb"});
-//
-//                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, dataSource);
-//                JasperViewer.viewReport(jasperPrint, false);
-//            } catch (JRException | FileNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//        }).start();
-//    }
-//
 
     public static void generarReportes(String idCliente) throws JRException {
         rutaCSV = "./" + idCliente + ".csv";

@@ -1,6 +1,5 @@
 package controller;
 
-
 import javafx.application.Platform;
 import javafx.collections.SetChangeListener;
 import javafx.event.ActionEvent;
@@ -15,6 +14,13 @@ import services.Reporte;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+/**
+ *
+ * @author Zebenzuí López Conde
+ * @version 1.0
+ * 2ºA DAM
+ */
 
 // Clase ControladorController
 public class ControladorController {

@@ -91,7 +91,7 @@ public class ClientHandler extends Thread {
                 if (sistema == null || usuario == null) {
                     System.out.println("No se puede obtener el sistema o el usuario");
                 } else {
-                    identificador = usuario + clientSocket.getInetAddress();
+                    identificador = usuario + (clientSocket.getInetAddress() + "").replace("/", "-");
                 }
                 // Crear un identificador único para cada clientSocket
                 clientIdentifiers.add(identificador);
@@ -118,18 +118,18 @@ public class ClientHandler extends Thread {
 
 
             // Crear un archivo .csv con el nombre del usuario
-            FileWriter fileWriter = new FileWriter(usuario + ".csv", true);
+            FileWriter fileWriter = new FileWriter(identificador + ".csv", true);
             PrintWriter csvWriter = new PrintWriter(fileWriter);
             // Escribe los encabezados en el archivo .csv solo si el archivo estaba vacío
-            File file = new File(usuario + ".csv");
+            File file = new File(identificador + ".csv");
             if (file.length() == 0) {
                 csvWriter.println("Sistema,Usuario,CPU (%),Memoria (%),Espacio en disco (GB),Espacio libre (GB),Porcentaje ocupado (%)");
             }
 
             // Escribe los datos del cliente en el archivo .csv
-            String data = String.format(Locale.US, "%s;%s;%.2f;%.2f;%.2f;%.2f;%.2f",
+            String data = String.format(Locale.US, "%s,%s,%.2f,%.2f,%.2f,%.2f,%.2f",
                     sistema, usuario, cpu, memoria, espacioDisco, espacioLibre, porcentajeOcupado);
-            data = data.replace(".", ",");
+//            data = data.replace(".", ",");
 
             csvWriter.println(data);
 

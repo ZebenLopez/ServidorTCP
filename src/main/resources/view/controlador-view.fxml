@@ -135,19 +135,25 @@
             <Tab styleClass="botonesPanel" text="Reportes">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Button layoutX="64.0" layoutY="171.0" mnemonicParsing="false" onAction="#reporte" styleClass="boton" text="Borrar" />
-                  <Button layoutX="258.0" layoutY="171.0" mnemonicParsing="false" onAction="#reporte" styleClass="boton" text="Mostrar" />
+                  <Button layoutX="71.0" layoutY="259.0" mnemonicParsing="false" onAction="#mostrarPDF" styleClass="boton" text="Mostrar" />
+                  <Button layoutX="172.0" layoutY="171.0" mnemonicParsing="false" onAction="#reporte" styleClass="boton" text="Generar" />
                   <Label layoutX="41.0" layoutY="44.0" styleClass="etiquetas" text="Gestión de reportes" textFill="WHITE">
                      <font>
                         <Font name="Consolas Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Label layoutX="39.0" layoutY="143.0" styleClass="etiquetas" text="Borrar reporte" textFill="WHITE">
+                  <Label layoutX="61.0" layoutY="228.0" styleClass="etiquetas" text="Mostrar PDF" textFill="WHITE">
                      <font>
                         <Font name="Consolas Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="232.0" layoutY="143.0" styleClass="etiquetas" text="Mostrar reporte" textFill="WHITE">
+                  <Label layoutX="225.0" layoutY="228.0" styleClass="etiquetas" text="Mostrar Reporte" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="251.0" layoutY="259.0" mnemonicParsing="false" onAction="#mostrarReporte" styleClass="boton" text="Mostrar" />
+                  <Label layoutX="38.0" layoutY="145.0" styleClass="etiquetas" text="Generar informe con el cliente seleccionado" textFill="WHITE">
                      <font>
                         <Font name="Consolas Bold" size="14.0" />
                      </font>

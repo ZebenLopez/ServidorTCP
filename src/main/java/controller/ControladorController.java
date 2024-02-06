@@ -11,6 +11,7 @@ import net.sf.jasperreports.engine.JRException;
 import services.ClientHandler;
 import services.MonitoreoAlertas;
 import services.Reporte;
+
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -109,6 +110,7 @@ public class ControladorController {
             enviarAlertas(identificadorCliente);
         }
     }
+
     public void enviarAlertas(String identificadorCliente) {
         scheduler.scheduleAtFixedRate(() -> {
             if (identificadorCliente != null) {
@@ -135,7 +137,7 @@ public class ControladorController {
         porcentajeDisco.setText("");
     }
 
-    public void reporte(ActionEvent actionEvent) {
+    public void reporte(ActionEvent actionEvent) throws JRException {
         // Crea un nuevo hilo que ejecuta el método generarReporte() del cliente seleccionado
         new Thread(() -> {
             String selectedClient = lista.getSelectionModel().getSelectedItem();
@@ -143,18 +145,30 @@ public class ControladorController {
                 ClientHandler clientHandler = ClientHandler.getClientHandlerByIdentifier(selectedClient);
                 if (clientHandler != null) {
                     try {
-                        Reporte.generarReporte();
+                        Reporte.generarReportes(selectedClient);
+                        Platform.runLater(() -> {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Reporte generado");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Reporte generado para el cliente: " + selectedClient);
+                            alert.showAndWait();
+                        });
                     } catch (JRException e) {
                         throw new RuntimeException(e);
                     }
                 }
-            }
-            try {
-                Reporte.generarReporte();
-            } catch (JRException e) {
-                throw new RuntimeException(e);
+            } else {
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error al generar el reporte");
+                    alert.setContentText("No se ha seleccionado un cliente");
+                    alert.showAndWait();
+                });
+                return;
             }
         }).start();
+
     }
 
     public void cpuSlider(MouseEvent mouseEvent) {
@@ -185,5 +199,45 @@ public class ControladorController {
 
     public double getDiscoSliderValue() {
         return discoSlider.getValue();
+    }
+
+    public void mostrarReporte(ActionEvent actionEvent) {
+        new Thread(() -> {
+            String selectedClient = lista.getSelectionModel().getSelectedItem();
+            if (selectedClient != null) {
+                ClientHandler clientHandler = ClientHandler.getClientHandlerByIdentifier(selectedClient);
+                if (clientHandler != null) {
+                    Reporte.mostrarReporte(selectedClient);
+                }
+            } else {
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error al mostrar el reporte");
+                    alert.setContentText("No se ha seleccionado un cliente");
+                    alert.showAndWait();
+                });
+            }
+        }).start();
+    }
+
+    public void mostrarPDF(ActionEvent actionEvent) {
+        new Thread(() -> {
+            String selectedClient = lista.getSelectionModel().getSelectedItem();
+            if (selectedClient != null) {
+                ClientHandler clientHandler = ClientHandler.getClientHandlerByIdentifier(selectedClient);
+                if (clientHandler != null) {
+                    Reporte.mostrarPDF(selectedClient);
+                }
+            } else {
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error al mostrar el PDF");
+                    alert.setContentText("No se ha seleccionado un cliente");
+                    alert.showAndWait();
+                });
+            }
+        }).start();
     }
 }

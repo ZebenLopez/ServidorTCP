@@ -5,6 +5,7 @@ module org.example.servidortcpfx {
     requires jasperreports;
     requires opencsv;
     requires java.sql;
+    requires java.desktop;
 
 
     exports controller;

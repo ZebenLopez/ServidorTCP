@@ -1,16 +1,38 @@
-.control{
-    -fx-text-fill: rgba(0, 0, 0, 0.5); /* 50% opacity */
-    -fx-background-color: rgba(2, 2, 2, 0.5); /* 50% opacity */
-    -fx-border-color: rgba(0, 0, 0, 0.5); /* 50% opacity */
-    -fx-border-width: 1px;
-    -fx-border-radius: 5px;
-    -fx-padding: 5px;
+.boton {
+    -fx-background-image: url('../images/grafica.jpg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-border: 1px solid; /* Remove border */
+    -fx-border-color: white; /* White border */
+    -fx-text-fill: white; /* White text */
+    -fx-text-align: center; /* Centered text */
+    -fx-text-decoration: none; /* Remove underline */
+    -fx-cursor: pointer;
+    -fx-border-radius: 3px; /* Rounded corners */
+    -fx-font-family: Consolas;
 }
 
-.control .etiquetas{
-    -fx-text-fill: rgb(255, 255, 255); /* 100% opacity */
+.boton:hover {
+    -fx-background-image: url('../images/graficaInvertida.jpg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-text-fill: #061159; /* White text */
+    -fx-text-align: center; /* Centered text */
+    -fx-text-decoration: none; /* Remove underline */
+    -fx-cursor: pointer;
+    -fx-font-family: Consolas;
 }
 
-.scrollPanel{
-    -fx-background-color: rgba(2, 2, 2, 0.5); /* 50% opacity */
+.botonesPanel {
+    -fx-font-family: Consolas;
+    -fx-background-image: url('../images/graficaInvertida.jpg');
 }
+
+.lista{
+    -fx-font-family: Consolas;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: #061159; /* Cambia esto al color que desees */
+}
+

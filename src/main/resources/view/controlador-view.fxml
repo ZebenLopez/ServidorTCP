@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
@@ -15,92 +18,152 @@
         <ImageView fitHeight="451.0" fitWidth="721.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../images/grafica.jpg" />
         </ImageView>
-        <TabPane layoutX="206.0" layoutY="5.0" prefHeight="394.0" prefWidth="395.0" tabClosingPolicy="UNAVAILABLE">
-            <Tab text="Control">
+        <TabPane layoutX="206.0" layoutY="5.0" prefHeight="394.0" prefWidth="395.0" styleClass="tabPanel" tabClosingPolicy="UNAVAILABLE">
+            <Tab styleClass="botonesPanel" text="Control">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="394.0" prefWidth="413.0" styleClass="control">
-                    <Label fx:id="cpuLabel" layoutX="253.0" layoutY="70.0" styleClass="etiquetas" textFill="WHITE">
+                    <Label fx:id="cpuLabel" layoutX="253.0" layoutY="70.0" textFill="WHITE">
                         <font>
                             <Font name="System Bold" size="29.0" />
                         </font>
                     </Label>
-                    <Label layoutX="47.0" layoutY="20.0" styleClass="etiquetas" text="Siatema" textFill="WHITE">
+                    <Label layoutX="47.0" layoutY="20.0" text="Sistema" textFill="WHITE">
+                        <font>
+                            <Font name="Consolas Bold" size="29.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="47.0" layoutY="70.0" text="\% CPU" textFill="WHITE">
+                        <font>
+                            <Font name="Consolas Bold" size="29.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="47.0" layoutY="120.0" text="\% RAM" textFill="WHITE">
+                        <font>
+                            <Font name="Consolas Bold" size="29.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="118.0" layoutY="183.0" text="Almacenamiento" textFill="WHITE">
+                        <font>
+                            <Font name="Consolas Bold" size="20.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="47.0" layoutY="220.0" text="Total" textFill="WHITE">
+                        <font>
+                            <Font name="Consolas Bold" size="29.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="sistema" layoutX="204.0" layoutY="20.0" textFill="WHITE">
                         <font>
                             <Font name="System Bold" size="29.0" />
                         </font>
                     </Label>
-                    <Label layoutX="47.0" layoutY="70.0" styleClass="etiquetas" text="\% CPU" textFill="WHITE">
+                    <Label layoutX="47.0" layoutY="270.0" text="Libre" textFill="WHITE">
+                        <font>
+                            <Font name="Consolas Bold" size="29.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="memoriaLabel" layoutX="253.0" layoutY="120.0" textFill="WHITE">
                         <font>
                             <Font name="System Bold" size="29.0" />
                         </font>
                     </Label>
-                    <Label layoutX="47.0" layoutY="120.0" styleClass="etiquetas" text="\% RAM" textFill="WHITE">
+                    <Label fx:id="espacioDisco" layoutX="253.0" layoutY="220.0" textFill="WHITE">
                         <font>
                             <Font name="System Bold" size="29.0" />
                         </font>
                     </Label>
-                    <Label layoutX="118.0" layoutY="183.0" styleClass="etiquetas" text="Almacenamiento" textFill="WHITE">
-                        <font>
-                            <Font name="System Bold" size="20.0" />
-                        </font>
-                    </Label>
-                    <Label layoutX="47.0" layoutY="220.0" styleClass="etiquetas" text="Total" textFill="WHITE">
+                    <Label fx:id="libreDisco" layoutX="253.0" layoutY="270.0" textFill="WHITE">
                         <font>
                             <Font name="System Bold" size="29.0" />
                         </font>
                     </Label>
-                    <Label fx:id="sistema" layoutX="204.0" layoutY="20.0" styleClass="etiquetas" textFill="WHITE">
+                    <Label fx:id="porcentajeDisco" layoutX="253.0" layoutY="320.0" textFill="WHITE">
                         <font>
                             <Font name="System Bold" size="29.0" />
                         </font>
                     </Label>
-                    <Label layoutX="47.0" layoutY="270.0" styleClass="etiquetas" text="Libre" textFill="WHITE">
+                    <Label layoutX="47.0" layoutY="320.0" text="Ocupado" textFill="WHITE">
                         <font>
-                            <Font name="System Bold" size="29.0" />
+                            <Font name="Consolas Bold" size="29.0" />
                         </font>
                     </Label>
-                    <Label fx:id="memoriaLabel" layoutX="253.0" layoutY="120.0" styleClass="etiquetas" textFill="WHITE">
-                        <font>
-                            <Font name="System Bold" size="29.0" />
-                        </font>
-                    </Label>
-                    <Label fx:id="espacioDisco" layoutX="253.0" layoutY="220.0" styleClass="etiquetas" textFill="WHITE">
-                        <font>
-                            <Font name="System Bold" size="29.0" />
-                        </font>
-                    </Label>
-                    <Label fx:id="libreDisco" layoutX="253.0" layoutY="270.0" styleClass="etiquetas" textFill="WHITE">
-                        <font>
-                            <Font name="System Bold" size="29.0" />
-                        </font>
-                    </Label>
-                    <Label fx:id="porcentajeDisco" layoutX="253.0" layoutY="320.0" styleClass="etiquetas" textFill="WHITE">
-                        <font>
-                            <Font name="System Bold" size="29.0" />
-                        </font>
-                    </Label>
-                    <Label layoutX="47.0" layoutY="320.0" styleClass="etiquetas" text="Ocupado" textFill="WHITE">
-                        <font>
-                            <Font name="System Bold" size="29.0" />
-                        </font>
-                    </Label>
+               <Separator layoutX="58.0" layoutY="172.0" prefHeight="2.0" prefWidth="278.0" styleClass="separador" />
                 </AnchorPane>
             </Tab>
-            <Tab text="Alertas">
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            <Tab styleClass="botonesPanel" text="Alertas">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="36.0" layoutY="110.0" prefHeight="19.0" prefWidth="85.0" styleClass="labels" text="\% CPU" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="20.0" layoutY="180.0" prefHeight="23.0" prefWidth="118.0" styleClass="labels" text="\% Memoria" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="36.0" layoutY="260.0" prefHeight="19.0" prefWidth="85.0" styleClass="labels" text="\% Disco" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="54.0" layoutY="38.0" prefHeight="23.0" prefWidth="287.0" styleClass="titulo" text="Umbral de envío de alertas" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Slider fx:id="cpuSlider" layoutX="160.0" layoutY="115.0" onDragDetected="#cpuSlider" value="100.0" />
+                  <Slider fx:id="memoriaSlider" layoutX="160.0" layoutY="185.0" onDragDetected="#memoriaSlider" value="100.0" />
+                  <Slider fx:id="discoSlider" layoutX="167.0" layoutY="265.0" onDragDetected="#discoSlider" value="100.0" />
+                  <Label fx:id="cpuLabelSlider" alignment="TOP_CENTER" layoutX="187.0" layoutY="92.0" prefHeight="19.0" prefWidth="85.0" styleClass="labels" text="100%" textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="memoriaLabelSlider" alignment="TOP_CENTER" layoutX="187.0" layoutY="165.0" prefHeight="19.0" prefWidth="85.0" styleClass="labels" text="100%" textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="discoLabelSlider" alignment="TOP_CENTER" layoutX="194.0" layoutY="243.0" prefHeight="19.0" prefWidth="85.0" styleClass="labels" text="100%" textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
             </Tab>
-            <Tab text="Reportes">
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            <Tab styleClass="botonesPanel" text="Reportes">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="64.0" layoutY="171.0" mnemonicParsing="false" onAction="#reporte" styleClass="boton" text="Borrar" />
+                  <Button layoutX="258.0" layoutY="171.0" mnemonicParsing="false" onAction="#reporte" styleClass="boton" text="Mostrar" />
+                  <Label layoutX="41.0" layoutY="44.0" styleClass="etiquetas" text="Gestión de reportes" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="39.0" layoutY="143.0" styleClass="etiquetas" text="Borrar reporte" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="232.0" layoutY="143.0" styleClass="etiquetas" text="Mostrar reporte" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
             </Tab>
         </TabPane>
-        <ScrollPane layoutY="56.0" prefHeight="374.0" prefWidth="203.0">
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="374.0" prefWidth="203.0" styleClass="scrollPanel">
+        <ScrollPane layoutX="14.0" layoutY="82.0" prefHeight="284.0" prefWidth="186.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="282.0" prefWidth="184.0" styleClass="scrollPanel">
             <children>
-               <ListView fx:id="lista" prefHeight="374.0" prefWidth="200.0" />
+               <ListView fx:id="lista" prefHeight="284.0" prefWidth="186.0" styleClass="lista" />
             </children></AnchorPane>
         </ScrollPane>
-      <Label layoutX="46.0" layoutY="15.0" styleClass="etiquetas" text="Clientes" textFill="WHITE">
+      <Label layoutX="43.0" layoutY="31.0" text="Clientes" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="29.0" />
+            <Font name="Consolas Bold" size="29.0" />
          </font>
       </Label>
     </children>

@@ -3,20 +3,28 @@ package controller;
 
 import javafx.application.Platform;
 import javafx.collections.SetChangeListener;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
+import net.sf.jasperreports.engine.JRException;
 import services.ClientHandler;
-
-import java.net.URL;
-import java.util.ResourceBundle;
+import services.MonitoreoAlertas;
+import services.Reporte;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 // Clase ControladorController
 public class ControladorController {
-    String selectedClient;
+    MonitoreoAlertas monitoreoAlertas;
+    public Slider cpuSlider;
+    public Slider memoriaSlider;
+    public Slider discoSlider;
+    public Label cpuLabelSlider;
+    public Label memoriaLabelSlider;
+    public Label discoLabelSlider;
+    public String selectedClient;
 
     // Etiquetas y lista en la interfaz de usuario
     @FXML
@@ -30,6 +38,9 @@ public class ControladorController {
 
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
+    public ControladorController() {
+        this.monitoreoAlertas = new MonitoreoAlertas(this);
+    }
 
     // Hilo que se ejecuta indefinidamente y actualiza los datos del cliente seleccionado en la interfaz de usuario cada segundo
     Thread updateThread = new Thread(() -> {
@@ -39,7 +50,11 @@ public class ControladorController {
                 Platform.runLater(() -> {
                     String selectedClient = lista.getSelectionModel().getSelectedItem();
                     if (selectedClient != null) {
-                        actualizarDatosCliente(selectedClient);
+                        try {
+                            actualizarDatosCliente(selectedClient);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 });
             } catch (InterruptedException e) {
@@ -47,10 +62,6 @@ public class ControladorController {
             }
         }
     });
-
-    // Constructor sin argumentos
-    public ControladorController() {
-    }
 
     @FXML
     public void initialize() {
@@ -78,22 +89,43 @@ public class ControladorController {
                 });
             }
         });
+        configureSlider(cpuSlider, cpuLabelSlider);
+        configureSlider(memoriaSlider, memoriaLabelSlider);
+        configureSlider(discoSlider, discoLabelSlider);
         updateThread.start();
     }
 
     // Método que se llama cuando se selecciona un nuevo cliente en la lista o cuando se necesita actualizar los datos del cliente seleccionado
-    public void actualizarDatosCliente(String identificadorCliente) {
+    public void actualizarDatosCliente(String identificadorCliente) throws InterruptedException {
         // Busca el cliente con el identificador dado y actualiza las etiquetas en la interfaz de usuario con los datos del cliente
         ClientHandler clientHandler = ClientHandler.getClientHandlerByIdentifier(identificadorCliente);
-        if (clientHandler != null){
+        if (clientHandler != null) {
             cpuLabel.setText((clientHandler.getCpu()) + "%");
             memoriaLabel.setText((clientHandler.getMemoria()) + "%");
             sistema.setText(clientHandler.getSistema());
             espacioDisco.setText((clientHandler.getEspacioDisco()) + " GB");
             libreDisco.setText((clientHandler.getEspacioLibre()) + " GB");
             porcentajeDisco.setText((clientHandler.getPorcentajeOcupado()) + "%");
+            enviarAlertas(identificadorCliente);
         }
     }
+    public void enviarAlertas(String identificadorCliente) {
+        scheduler.scheduleAtFixedRate(() -> {
+            if (identificadorCliente != null) {
+                ClientHandler clientHandler = ClientHandler.getClientHandlerByIdentifier(identificadorCliente);
+                if (clientHandler != null) {
+                    try {
+                        monitoreoAlertas.monitoreoCPU(clientHandler.getCpu(), identificadorCliente);
+                        monitoreoAlertas.monitoreoMemoria(clientHandler.getMemoria(), identificadorCliente);
+                        monitoreoAlertas.monitoreoDisco(clientHandler.getPorcentajeOcupado(), identificadorCliente);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }, 0, 5, TimeUnit.SECONDS);
+    }
+
     public void borrarDatosCliente() {
         cpuLabel.setText("");
         memoriaLabel.setText("");
@@ -101,5 +133,57 @@ public class ControladorController {
         espacioDisco.setText("");
         libreDisco.setText("");
         porcentajeDisco.setText("");
+    }
+
+    public void reporte(ActionEvent actionEvent) {
+        // Crea un nuevo hilo que ejecuta el método generarReporte() del cliente seleccionado
+        new Thread(() -> {
+            String selectedClient = lista.getSelectionModel().getSelectedItem();
+            if (selectedClient != null) {
+                ClientHandler clientHandler = ClientHandler.getClientHandlerByIdentifier(selectedClient);
+                if (clientHandler != null) {
+                    try {
+                        Reporte.generarReporte();
+                    } catch (JRException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+            try {
+                Reporte.generarReporte();
+            } catch (JRException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
+    }
+
+    public void cpuSlider(MouseEvent mouseEvent) {
+        cpuSlider.setValue(cpuSlider.getValue());
+    }
+
+    public void memoriaSlider(MouseEvent mouseEvent) {
+        memoriaSlider.setValue(memoriaSlider.getValue());
+    }
+
+    public void discoSlider(MouseEvent mouseEvent) {
+        discoSlider.setValue(discoSlider.getValue());
+    }
+
+    private void configureSlider(Slider slider, Label label) {
+        slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            label.setText(String.format("%.2f", newValue) + "%");
+        });
+    }
+
+    public double getCpuSliderValue() {
+        return cpuSlider.getValue();
+    }
+
+    public double getMemoriaSliderValue() {
+        return memoriaSlider.getValue();
+    }
+
+    public double getDiscoSliderValue() {
+        return discoSlider.getValue();
     }
 }

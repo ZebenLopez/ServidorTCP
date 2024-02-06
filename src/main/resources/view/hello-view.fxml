@@ -6,21 +6,42 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="496.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0" prefWidth="374.0" stylesheets="@../style/style-etiquetas.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HelloController">
    <children>
       <ImageView fitHeight="452.0" fitWidth="659.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/grafica.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="usuario" layoutX="173.0" layoutY="110.0" />
-      <Button layoutX="225.0" layoutY="241.0" mnemonicParsing="false" onAction="#login" text="Login" />
-      <TextField fx:id="password" layoutX="173.0" layoutY="187.0" />
-      <Label layoutX="227.0" layoutY="73.0" text="Usuario" textFill="#f4f4f4" />
-      <Label layoutX="227.0" layoutY="159.0" text="Usuario" textFill="#f4f4f4" />
-      <Button layoutX="217.0" layoutY="323.0" mnemonicParsing="false" onAction="#registro" text="Registro" />
+      <TextField fx:id="usuario" alignment="TOP_CENTER" layoutX="140.0" layoutY="109.0" promptText="Usuario">
+         <font>
+            <Font name="Consolas Bold" size="12.0" />
+         </font></TextField>
+      <Button layoutX="164.0" layoutY="233.0" mnemonicParsing="false" onAction="#login" styleClass="boton" text="Login" textAlignment="CENTER" textFill="WHITE" />
+      <TextField fx:id="password" alignment="TOP_CENTER" layoutX="140.0" layoutY="184.0" promptText="Contraseña">
+         <font>
+            <Font name="Consolas Bold" size="12.0" />
+         </font></TextField>
+      <Label layoutX="166.0" layoutY="74.0" text="Usuario" textFill="#f4f4f4">
+         <font>
+            <Font name="Consolas Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="156.0" layoutY="154.0" text="Contraseña" textFill="#f4f4f4">
+         <font>
+            <Font name="Consolas Bold" size="12.0" />
+         </font></Label>
+      <Button layoutX="160.0" layoutY="316.0" mnemonicParsing="false" onAction="#registro" styleClass="boton" text="Registro" />
+      <Label layoutX="128.0" layoutY="279.0" onMouseClicked="#olvidoContraseña" styleClass="olvido" text="Olvidó su contraseña?" textFill="#f4f4f4">
+         <font>
+            <Font name="Consolas Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="95.0" layoutY="32.0" text="LOGIN DEL SERVIDOR" textFill="#f4f4f4">
+         <font>
+            <Font name="Consolas Bold" size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

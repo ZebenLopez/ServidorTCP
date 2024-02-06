@@ -13,18 +13,6 @@ public class HelloApplication extends Application {
 
     private static Stage stage;
 
-//    @Override
-//    public void init() throws Exception {
-//        new Thread(() -> {
-//            Conexion conexion = new Conexion();
-//            try {
-//                conexion.conectar();
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }).start();
-//    }
-
     @Override
     public void start(Stage stage) throws IOException {
         Stage newStage = new Stage();

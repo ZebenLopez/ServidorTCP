@@ -49,9 +49,10 @@ public class ClientHandler extends Thread {
         this.controladorController = new ControladorController();
     }
 
-    private void onClientConnected() {
+    private void onClientConnected() throws InterruptedException {
         clientIdentifiers.add(identificador);
         controladorController.actualizarDatosCliente(identificador); // Actualiza la lista de clientes en el ListView
+        controladorController.enviarAlertas(identificador); // Envía alertas al cliente
         System.out.println("Cliente conectado: " + identificador);
     }
 
@@ -82,12 +83,11 @@ public class ClientHandler extends Thread {
                 espacioDisco = Double.parseDouble(datosCliente.get(4).toString());
                 espacioLibre = Double.parseDouble(datosCliente.get(5).toString());
                 porcentajeOcupado = Double.parseDouble(datosCliente.get(6).toString());
-                usb = datosCliente.get(7).toString();
 
                 crearArchivoCSV(datosCliente);
 
                 // Imprimir los datos del cliente
-                System.out.println("Datos recibidos del cliente: " + datosCliente);
+                System.out.println("Datos recibidos del cliente "+ identificador + ": " + datosCliente);
                 if (sistema == null || usuario == null) {
                     System.out.println("No se puede obtener el sistema o el usuario");
                 } else {
@@ -105,33 +105,33 @@ public class ClientHandler extends Thread {
             onClientDisconnected();
         }
     }
-
     public void crearArchivoCSV(List<Object> datosCliente) {
         try {
-
             // Extraer los datos y almacenarlos en variables
             String sistema = datosCliente.get(0).toString();
             String usuario = datosCliente.get(1).toString();
-            String cpu = (datosCliente.get(2).toString());
-            String memoria = (datosCliente.get(3).toString());
-            String espacioDisco = (datosCliente.get(4).toString());
-            String espacioLibre = (datosCliente.get(5).toString());
-            String porcentajeOcupado = (datosCliente.get(6).toString());
-            String usb = datosCliente.get(7).toString();
+            double cpu = Double.parseDouble(datosCliente.get(2).toString());
+            double memoria = Double.parseDouble(datosCliente.get(3).toString());
+            double espacioDisco = Double.parseDouble(datosCliente.get(4).toString());
+            double espacioLibre = Double.parseDouble(datosCliente.get(5).toString());
+            double porcentajeOcupado = Double.parseDouble(datosCliente.get(6).toString());
+
 
             // Crear un archivo .csv con el nombre del usuario
             FileWriter fileWriter = new FileWriter(usuario + ".csv", true);
             PrintWriter csvWriter = new PrintWriter(fileWriter);
-
             // Escribe los encabezados en el archivo .csv solo si el archivo estaba vacío
             File file = new File(usuario + ".csv");
             if (file.length() == 0) {
-                csvWriter.println("Sistema,Usuario,CPU (%),Memoria (%),Espacio en disco (GB),Espacio libre (GB),Porcentaje ocupado (%),USB");
+                csvWriter.println("Sistema,Usuario,CPU (%),Memoria (%),Espacio en disco (GB),Espacio libre (GB),Porcentaje ocupado (%)");
             }
 
             // Escribe los datos del cliente en el archivo .csv
-            csvWriter.printf("%s,%s,%s,%s,%s,%s,%s,%s\n",
-                    sistema, usuario, cpu, memoria, espacioDisco, espacioLibre, porcentajeOcupado, usb);
+            String data = String.format(Locale.US, "%s;%s;%.2f;%.2f;%.2f;%.2f;%.2f",
+                    sistema, usuario, cpu, memoria, espacioDisco, espacioLibre, porcentajeOcupado);
+            data = data.replace(".", ",");
+
+            csvWriter.println(data);
 
             // Limpia el PrintWriter para asegurarte de que los datos se escriban en el archivo
             csvWriter.flush();
@@ -146,7 +146,9 @@ public class ClientHandler extends Thread {
         clientIdentifiers.remove(identificador);
 
         // Cierra el PrintWriter cuando el cliente se desconecta
-        csvWriter.close();
+        if (csvWriter != null) {
+            csvWriter.close();
+        }
     }
 
     private static Map<String, ClientHandler> clientHandlers = new HashMap<>();
@@ -193,5 +195,15 @@ public class ClientHandler extends Thread {
 
     public Socket getClientSocket() {
         return clientSocket;
+    }
+
+    public void enviarAlerta(String alerta) {
+        try {
+            PrintWriter outToClient = new PrintWriter(clientSocket.getOutputStream(), true);
+            outToClient.println(alerta);
+            outToClient.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

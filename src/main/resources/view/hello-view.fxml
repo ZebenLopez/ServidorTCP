@@ -19,7 +19,7 @@
          <font>
             <Font name="Consolas Bold" size="12.0" />
          </font></TextField>
-      <Button layoutX="164.0" layoutY="233.0" mnemonicParsing="false" onAction="#login" styleClass="boton" text="Login" textAlignment="CENTER" textFill="WHITE" />
+      <Button layoutX="158.0" layoutY="233.0" mnemonicParsing="false" onAction="#login" styleClass="boton" text="Entrar" textAlignment="CENTER" textFill="WHITE" />
       <TextField fx:id="password" alignment="TOP_CENTER" layoutX="140.0" layoutY="184.0" promptText="Contraseña">
          <font>
             <Font name="Consolas Bold" size="12.0" />
@@ -32,7 +32,7 @@
          <font>
             <Font name="Consolas Bold" size="12.0" />
          </font></Label>
-      <Button layoutX="160.0" layoutY="316.0" mnemonicParsing="false" onAction="#registro" styleClass="boton" text="Registro" />
+      <Button layoutX="154.0" layoutY="318.0" mnemonicParsing="false" onAction="#registro" styleClass="boton" text="Registro" />
       <Label layoutX="128.0" layoutY="279.0" onMouseClicked="#olvidoContraseña" styleClass="olvido" text="Olvidó su contraseña?" textFill="#f4f4f4">
          <font>
             <Font name="Consolas Bold" size="12.0" />

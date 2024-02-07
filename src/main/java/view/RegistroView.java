@@ -8,29 +8,47 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
+ * The type Registro view.
  *
  * @author Zebenzuí López Conde
- * @version 1.0
- * 2ºA DAM
+ * @version 1.0  2ºA DAM
  */
-
+// Clase RegistroView que se encarga de mostrar la vista de registro
 public class RegistroView {
+    // Stage actual
     private static Stage stage = new Stage();
+
+    /**
+     * Show.
+     *
+     * @throws IOException the io exception
+     */
+// Método para mostrar la vista de registro
     public static void show() throws IOException {
+        // Oculta el stage actual
         stage.hide();
-        // Crea un nuevo Stage con el nuevo estilo.
+        // Crea un nuevo Stage
         Stage newStage = new Stage();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("registro-view.fxml")); // Cargador FXML para cargar la vista principal
-        Scene scene = new Scene(fxmlLoader.load()); // Crea una nueva escena con la vista principal
-        newStage.setTitle("Panel de registro"); // Establece el título del nuevo escenario
-        newStage.setScene(scene); // Establece la escena del nuevo escenario
-        newStage.setResizable(false); // Hace que el nuevo escenario no sea redimensionable
-        newStage.setOnCloseRequest(event -> {
-            System.exit(0); // Cierra la aplicación cuando se cierra el nuevo escenario
-        });
-        newStage.show(); // Muestra el nuevo escenario
+        // Cargador FXML para cargar la vista de registro
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("registro-view.fxml"));
+        // Crea una nueva escena con la vista de registro
+        Scene scene = new Scene(fxmlLoader.load());
 
-        RegistroController registroController = fxmlLoader.getController(); // Obtiene el controlador de la vista principal
+        // Establece el título del nuevo escenario
+        newStage.setTitle("Registro");
+        // Establece la escena del nuevo escenario
+        newStage.setScene(scene);
+        // Hace que el nuevo escenario no sea redimensionable
+        newStage.setResizable(false);
+        // Cierra la aplicación cuando se cierra el nuevo escenario
+        newStage.setOnCloseRequest(event -> {
+            System.exit(0);
+        });
+        // Muestra el nuevo escenario
+        newStage.show();
+
+        // Obtiene el controlador de la vista de registro
+        RegistroController registroController = fxmlLoader.getController();
     }
 }

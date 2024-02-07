@@ -5,30 +5,56 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
 /**
+ * The type Monitoreo alertas.
  *
  * @author Zebenzuí López Conde
- * @version 1.0
- * 2ºA DAM
+ * @version 1.0  2ºA DAM
  */
+// Clase MonitoreoAlertas que se encarga de monitorear y enviar alertas basadas en el uso de CPU, memoria y disco
 public class MonitoreoAlertas {
+    /**
+     * The Controlador controller.
+     */
+// Controlador de la interfaz de usuario
     ControladorController controladorController;
 
+    /**
+     * Instantiates a new Monitoreo alertas.
+     *
+     * @param controladorController the controlador controller
+     */
+// Constructor de la clase MonitoreoAlertas
     public MonitoreoAlertas(ControladorController controladorController) {
         this.controladorController = controladorController;
     }
 
+    /**
+     * Monitoreo cpu.
+     *
+     * @param cpu           the cpu
+     * @param identificador the identificador
+     * @throws InterruptedException the interrupted exception
+     */
+// Método para monitorear el uso de CPU y enviar una alerta si supera un cierto umbral
     public void monitoreoCPU(double cpu, String identificador) throws InterruptedException {
         new Thread(() -> {
             if (cpu >= controladorController.getCpuSliderValue()) {
+                // Imprime un mensaje en la consola si el uso de CPU supera el valor del slider
                 System.out.println("Alerta: El uso de CPU supera el " + controladorController.getCpuSliderValue() + "% con un valor de " + cpu + "%");
+                // Crea una alerta si el uso de CPU supera el valor del slider
                 String alerta = "El uso de CPU supera el " + controladorController.getCpuSliderValue() + "% con un valor de " + cpu + "%";
+                // Obtiene el manejador del cliente por su identificador
                 ClientHandler clientHandler = ClientHandler.getClientHandlerByIdentifier(identificador);
                 if (clientHandler != null) {
+                    // Envia la alerta al cliente si el manejador del cliente no es nulo
                     clientHandler.enviarAlerta(alerta);
+                    // Imprime un mensaje en la consola indicando que la alerta fue enviada al cliente
                     System.out.println("Alerta enviada al cliente: " + identificador);
                 } else {
+                    // Imprime un mensaje en la consola si no se pudo enviar la alerta al cliente
                     System.out.println("No se pudo enviar la alerta al cliente: " + identificador);
                 }
+                // Muestra una alerta en la interfaz de usuario
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Alerta de uso de CPU");
@@ -38,21 +64,36 @@ public class MonitoreoAlertas {
                 });
             }
         }).start();
+        // El hilo duerme durante 5 segundos
         Thread.sleep(5000);
-
     }
 
+    /**
+     * Monitoreo memoria.
+     *
+     * @param memoria       the memoria
+     * @param identificador the identificador
+     * @throws InterruptedException the interrupted exception
+     */
+// Método para monitorear el uso de memoria y enviar una alerta si supera un cierto umbral
     public void monitoreoMemoria(double memoria, String identificador) throws InterruptedException {
         if (memoria >= controladorController.getMemoriaSliderValue()) {
+            // Imprime un mensaje en la consola si el uso de memoria supera el valor del slider
             System.out.println("Alerta: El uso de memoria supera el " + controladorController.getMemoriaSliderValue() + "% con un valor de " + memoria + "%");
+            // Crea una alerta si el uso de memoria supera el valor del slider
             String alerta = "El uso de memoria supera el " + controladorController.getMemoriaSliderValue() + "% con un valor de " + memoria + "%";
+            // Obtiene el manejador del cliente por su identificador
             ClientHandler clientHandler = ClientHandler.getClientHandlerByIdentifier(identificador);
             if (clientHandler != null) {
+                // Envia la alerta al cliente si el manejador del cliente no es nulo
                 clientHandler.enviarAlerta(alerta);
+                // Imprime un mensaje en la consola indicando que la alerta fue enviada al cliente
                 System.out.println("Alerta enviada al cliente: " + identificador);
             } else {
+                // Imprime un mensaje en la consola si no se pudo enviar la alerta al cliente
                 System.out.println("No se pudo enviar la alerta al cliente: " + identificador);
             }
+            // Muestra una alerta en la interfaz de usuario
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Alerta de uso de Memoria");
@@ -60,21 +101,37 @@ public class MonitoreoAlertas {
                 alert.setContentText("El uso de memoria es de " + memoria + "%, se enviará una alerta al cliente " + identificador + ".");
                 alert.showAndWait();
             });
+            // El hilo duerme durante 10 segundos
             Thread.sleep(10000);
         }
     }
 
+    /**
+     * Monitoreo disco.
+     *
+     * @param disco         the disco
+     * @param identificador the identificador
+     * @throws InterruptedException the interrupted exception
+     */
+// Método para monitorear el uso de disco y enviar una alerta si supera un cierto umbral
     public void monitoreoDisco(double disco, String identificador) throws InterruptedException {
         if (disco >= controladorController.getDiscoSliderValue()) {
+            // Imprime un mensaje en la consola si el uso de disco supera el valor del slider
             System.out.println("Alerta: El uso de disco supera el " + controladorController.getDiscoSliderValue() + "%");
+            // Crea una alerta si el uso de disco supera el valor del slider
             String alerta = "El uso de disco supera el " + controladorController.getDiscoSliderValue() + "% con un valor de " + disco + "%";
+            // Obtiene el manejador del cliente por su identificador
             ClientHandler clientHandler = ClientHandler.getClientHandlerByIdentifier(identificador);
             if (clientHandler != null) {
+                // Envia la alerta al cliente si el manejador del cliente no es nulo
                 clientHandler.enviarAlerta(alerta);
+                // Imprime un mensaje en la consola indicando que la alerta fue enviada al cliente
                 System.out.println("Alerta enviada al cliente: " + identificador);
             } else {
+                // Imprime un mensaje en la consola si no se pudo enviar la alerta al cliente
                 System.out.println("No se pudo enviar la alerta al cliente: " + identificador);
             }
+            // Muestra una alerta en la interfaz de usuario
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Alerta de uso de Disco");
@@ -82,6 +139,7 @@ public class MonitoreoAlertas {
                 alert.setContentText("El uso de disco es de " + disco + "%, se enviará una alerta al cliente " + identificador + ".");
                 alert.showAndWait();
             });
+            // El hilo duerme durante 10 segundos
             Thread.sleep(10000);
         }
     }

@@ -107,7 +107,7 @@
                         <Font name="Consolas Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="54.0" layoutY="38.0" prefHeight="23.0" prefWidth="287.0" styleClass="titulo" text="Umbral de envío de alertas" textFill="WHITE">
+                  <Label layoutX="11.0" layoutY="36.0" prefHeight="23.0" prefWidth="366.0" styleClass="titulo" text="Configuración de envío de alertas" textFill="WHITE">
                      <font>
                         <Font name="Consolas Bold" size="20.0" />
                      </font>

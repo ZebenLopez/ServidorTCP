@@ -10,24 +10,24 @@ import com.google.gson.reflect.TypeToken;
 import controller.ControladorController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
+
 /**
+ * The type Client handler.
  *
  * @author Zebenzuí López Conde
- * @version 1.0
- * 2ºA DAM
+ * @version 1.0 2ºA DAM
  */
-
+// Clase ClientHandler que se encarga de manejar las conexiones de los clientes
 public class ClientHandler extends Thread {
     private PrintWriter csvWriter;
 
+    // Controlador de la interfaz de usuario
     private final ControladorController controladorController;
-    //    private static Set<String> clientIdentifiers = new HashSet<>(); // Cambiado a Set para evitar duplicados
+
+    // Conjunto de identificadores de clientes
     private static ObservableSet<String> clientIdentifiers = FXCollections.observableSet(new HashSet<>());
 
-    public static ObservableSet<String> getClientIdentifiers() {
-        return clientIdentifiers;
-    }
-
+    // Datos del cliente
     private String sistema;
     private String usuario;
     private double cpu;
@@ -38,14 +38,32 @@ public class ClientHandler extends Thread {
     private String usb;
     private String identificador;
 
+    // Socket del cliente
     private final Socket clientSocket;
 
-    // Constructor
+    /**
+     * Instantiates a new Client handler.
+     *
+     * @param connectionSocket the connection socket
+     */
+// Constructor de la clase ClientHandler
     public ClientHandler(Socket connectionSocket) {
         this.clientSocket = connectionSocket;
         this.controladorController = new ControladorController();
     }
 
+    /**
+     * Gets client identifiers.
+     *
+     * @return the client identifiers
+     */
+// Método estático para obtener los identificadores de los clientes
+    public static ObservableSet<String> getClientIdentifiers() {
+        // Devuelve el conjunto de identificadores de clientes
+        return clientIdentifiers;
+    }
+
+    // Método que se ejecuta cuando se inicia el hilo
     @Override
     public void run() {
         try {
@@ -95,6 +113,13 @@ public class ClientHandler extends Thread {
             onClientDisconnected();
         }
     }
+
+    /**
+     * Crear archivo csv.
+     *
+     * @param datosCliente the datos cliente
+     */
+// Método para crear un archivo CSV con los datos del cliente
     public void crearArchivoCSV(List<Object> datosCliente) {
         try {
             // Extraer los datos y almacenarlos en variables
@@ -131,6 +156,7 @@ public class ClientHandler extends Thread {
         }
     }
 
+    // Método que se llama cuando un cliente se desconecta
     private void onClientDisconnected() {
         System.out.println("Cliente desconectado: " + identificador);
         clientIdentifiers.remove(identificador);
@@ -143,38 +169,88 @@ public class ClientHandler extends Thread {
 
     private static Map<String, ClientHandler> clientHandlers = new HashMap<>();
 
+    /**
+     * Gets client handler by identifier.
+     *
+     * @param identifier the identifier
+     * @return the client handler by identifier
+     */
+// Método para obtener un ClientHandler por su identificador
     public static ClientHandler getClientHandlerByIdentifier(String identifier) {
         return clientHandlers.get(identifier);
     }
 
+
+    /**
+     * Gets sistema.
+     *
+     * @return the sistema
+     */
+// Métodos para obtener los datos del cliente
     public String getSistema() {
         return sistema;
     }
 
+    /**
+     * Gets usuario.
+     *
+     * @return the usuario
+     */
     public String getUsuario() {
         return usuario;
     }
 
+    /**
+     * Gets cpu.
+     *
+     * @return the cpu
+     */
     public double getCpu() {
         return cpu;
     }
 
+    /**
+     * Gets memoria.
+     *
+     * @return the memoria
+     */
     public double getMemoria() {
         return memoria;
     }
 
+    /**
+     * Gets espacio disco.
+     *
+     * @return the espacio disco
+     */
     public double getEspacioDisco() {
         return espacioDisco;
     }
 
+    /**
+     * Gets espacio libre.
+     *
+     * @return the espacio libre
+     */
     public double getEspacioLibre() {
         return espacioLibre;
     }
 
+    /**
+     * Gets porcentaje ocupado.
+     *
+     * @return the porcentaje ocupado
+     */
     public double getPorcentajeOcupado() {
         return porcentajeOcupado;
     }
 
+    /**
+     * Enviar alerta.
+     *
+     * @param alerta the alerta
+     */
+// Método para enviar una alerta al cliente
     public void enviarAlerta(String alerta) {
         try {
             PrintWriter outToClient = new PrintWriter(clientSocket.getOutputStream(), true);

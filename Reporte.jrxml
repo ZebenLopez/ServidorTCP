@@ -64,7 +64,7 @@
 			</frame>
 			<image>
 				<reportElement positionType="Float" x="721" y="0" width="229" height="102" uuid="4b006f6a-2c17-4551-b7f6-e98f0b1a33c6"/>
-				<imageExpression><![CDATA["C:/Users/Lopez/Desktop/grafica.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["src/main/resources/images/grafica.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

@@ -5,12 +5,18 @@ import javafx.collections.SetChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import net.sf.jasperreports.engine.JRException;
+import services.Ayuda;
 import services.ClientHandler;
 import services.MonitoreoAlertas;
 import services.Reporte;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -374,5 +380,8 @@ public class ControladorController {
                 });
             }
         }).start();
+    }
+    public void ayuda(ActionEvent actionEvent) {
+        Ayuda.abrirHelp();
     }
 }

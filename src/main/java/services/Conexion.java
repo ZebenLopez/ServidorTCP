@@ -54,10 +54,18 @@ public class Conexion {
                 }
             }
         });
-
         conexionThread.start();
-
     }
+
+    /**
+     * Stop.
+     * <p>
+     *     Método para detener la conexión con los clientes
+     *     <p>
+     *         Establece el valor de running a false
+     *         Cierra el ServerSocket
+     *         Interrumpe el hilo de conexión
+     */
     public void stop() {
         running = false;
         if (serverSocket != null && !serverSocket.isClosed()) {

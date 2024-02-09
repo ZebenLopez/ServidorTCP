@@ -295,6 +295,11 @@ public class ClientHandler extends Thread {
         }
     }
 
+    /**
+     * Cerrar conexion.
+     * <p>
+     *     Método para cerrar la conexión con el cliente
+     */
     public void cerrarConexion() {
     if (clientSocket != null && !clientSocket.isClosed()) {
         try {
@@ -307,6 +312,9 @@ public class ClientHandler extends Thread {
     }
 }
 
+/**
+* Crea un mapeo de identificadores de clientes a ClientHandlers
+* */
     public static Map<String, ClientHandler> getClientHandlers() {
         return clientHandlers;
     }

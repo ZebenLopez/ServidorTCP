@@ -487,38 +487,22 @@ public class ControladorController {
      * Método para cerrar la sesión
      * <p>
      * Obtiene el ClientHandler correspondiente
-     * Cierra la conexión
-     * Detén el hilo de actualización
+     * Cierra la conexión con el cliente
+     * Cierra la conexión con el servidor
+     * Detiene el hilo de actualización
      * Cierra la ventana actual y abre la vista de inicio de sesión
      *
      * @param actionEvent the action event
      * @throws IOException the io exception
      */
-//    public void cerrarSesion(ActionEvent actionEvent) throws IOException {
-//        // Obtén el ClientHandler correspondiente
-//        ClientHandler clientHandler = ClientHandler.getClientHandlerByIdentifier(selectedClient);
-//        if (clientHandler != null) {
-//            // Cierra la conexión
-//            clientHandler.cerrarConexion();
-//        }
-//
-//        // Detén el hilo de actualización
-//        running = false;
-//
-//        // Cierra la ventana actual y abre la vista de inicio de sesión
-//        ((Button) actionEvent.getSource()).getScene().getWindow().hide();
-//        HelloApplication.showLogin();
-//    }
     public void cerrarSesion(ActionEvent actionEvent) throws IOException {
-        // Iterate over all ClientHandlers and close the connection
+        // Itera sobre todos los ClientHandlers y cierra la conexión
         for (ClientHandler clientHandler : ClientHandler.getClientHandlers().values()) {
             clientHandler.cerrarConexion();
         }
-
         // Detén la conexión con el servidor
         controladorView.stop();
         conexion.stop();
-
         // Detén el hilo de actualización
         running = false;
         // Cierra la ventana actual y abre la vista de inicio de sesión

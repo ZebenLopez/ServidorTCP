@@ -85,6 +85,15 @@ public class ControladorView {
         conexionThread.start();
     }
 
+    /**
+     * Stop.
+     * <p>
+     *     Método para detener la conexión con el servidor
+     *     <p>
+     *         Interrumpe el hilo de conexión
+     *         Detiene la conexión con el servidor
+     *         Cierra el stage
+     */
     public void stop() {
         if (conexionThread != null) {
             conexionThread.interrupt();

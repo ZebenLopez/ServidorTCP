@@ -15,11 +15,12 @@ import java.util.Map;
 
 /**
  * The type Reporte.
+ * <p>
+ *     Clase Reporte que se encarga de generar reportes basados en los datos de uso de CPU, memoria y disco
  *
  * @author Zebenzuí López Conde
  * @version 1.0  2ºA DAM
  */
-// Clase Reporte que se encarga de generar reportes basados en los datos de uso de CPU, memoria y disco
 public class Reporte {
 
     // Ruta del archivo del reporte
@@ -31,11 +32,22 @@ public class Reporte {
 
     /**
      * Generar reportes.
+     * <p>
+     *     Método para generar los reportes para un cliente específico
+     *     <p>
+     *         Si el archivo del reporte no existe, muestra una alerta en la interfaz de usuario
+     *         Si el archivo CSV no existe, lanza una excepción
+     *         Compila el reporte
+     *         Crea un nuevo DataSource a partir del archivo CSV
+     *         Crea un nuevo HashMap para los parámetros del reporte
+     *         Llena el reporte con los datos del DataSource y los parámetros
+     *         Almacena el JasperPrint en el Map con el idCliente como clave
+     *         Exporta el reporte a un archivo PDF
+     *         Si ocurre un error, imprime la traza de la excepción
      *
      * @param idCliente the id cliente
      * @throws JRException the jr exception
      */
-// Método para generar los reportes para un cliente específico
     public static void generarReportes(String idCliente) throws JRException {
         // Establece la ruta del archivo CSV basado en el id del cliente
         rutaCSV = "./" + idCliente + ".csv";
@@ -91,10 +103,16 @@ public class Reporte {
 
     /**
      * Mostrar reporte.
+     * <p>
+     *     Método para mostrar el reporte de un cliente específico
+     *     <p>
+     *         Crea un nuevo hilo para mostrar el reporte
+     *         Recupera el JasperPrint del Map utilizando el id como clave
+     *         Si el JasperPrint es nulo, muestra una alerta en la interfaz de usuario
+     *         Si el JasperPrint no es nulo, muestra el reporte
      *
      * @param id the id
      */
-// Método para mostrar el reporte de un cliente específico
     public static void mostrarReporte(String id) {
         // Crea un nuevo hilo para mostrar el reporte
         new Thread(() -> {
@@ -118,10 +136,18 @@ public class Reporte {
 
     /**
      * Mostrar pdf.
+     * <p>
+     *     Método para mostrar el PDF de un cliente específico
+     *     <p>
+     *         Establece la ruta del archivo PDF basado en el id del cliente
+     *         Crea un nuevo hilo para mostrar el PDF
+     *         Verifica si el archivo PDF existe
+     *         Si el archivo PDF existe, lo abre
+     *         Si ocurre un error al abrir el archivo, lanza una excepción
+     *         Si el archivo PDF no existe, muestra una alerta en la interfaz de usuario
      *
      * @param id the id
      */
-// Método para mostrar el PDF de un cliente específico
     public static void mostrarPDF(String id) {
         // Establece la ruta del archivo PDF basado en el id del cliente
         String rutaPDF = "./" + id + ".pdf";

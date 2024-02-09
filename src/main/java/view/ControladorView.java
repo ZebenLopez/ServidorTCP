@@ -10,17 +10,37 @@ import java.io.IOException;
 
 /**
  * The type Controlador view.
+ * <p>
+ *     Clase ControladorView que se encarga de mostrar la vista del controlador
  *
  * @author Zebenzuí López Conde
  * @version 1.0  2ºA DAM
  */
-// Clase ControladorView que se encarga de mostrar la vista del controlador
 public class ControladorView {
+    static Conexion conexion;
+    private static Thread conexionThread;
+
     // Stage actual
     private static Stage stage = new Stage();
 
     /**
      * Show.
+     * <p>
+     *     Método para mostrar la vista del controlador
+     *     <p>
+     *         Oculta el stage actual
+     *         Crea un nuevo Stage
+     *         Cargador FXML para cargar la vista principal
+     *         Crea una nueva escena con la vista principal
+     *         Establece el título del nuevo escenario
+     *         Establece la escena del nuevo escenario
+     *         Hace que el nuevo escenario no sea redimensionable
+     *         Cierra la aplicación cuando se cierra el nuevo escenario
+     *         Muestra el nuevo escenario
+     *         Obtiene el controlador de la vista principal
+     *         Crea un nuevo hilo para conectar con el servidor
+     *         Intenta conectar con el servidor
+     *         Lanza una excepción si ocurre un error al conectar con el servidor
      *
      * @throws IOException the io exception
      */
@@ -50,16 +70,27 @@ public class ControladorView {
 
         // Obtiene el controlador de la vista principal
         ControladorController controladorController = fxmlLoader.getController();
+
         // Crea un nuevo hilo para conectar con el servidor
-        new Thread(() -> {
-            Conexion conexion = new Conexion();
+        conexionThread =  new Thread(() -> {
+            conexion = new Conexion();
             try {
                 // Intenta conectar con el servidor
                 conexion.conectar();
             } catch (IOException e) {
                 // Lanza una excepción si ocurre un error al conectar con el servidor
-                throw new RuntimeException(e);
+                System.out.println("Error al conectar con el servidor");
             }
-        }).start();
+        });
+        conexionThread.start();
+    }
+
+    public void stop() {
+        if (conexionThread != null) {
+            conexionThread.interrupt();
+            conexionThread = null;
+            stage.close();
+        }
+        conexion.stop();
     }
 }

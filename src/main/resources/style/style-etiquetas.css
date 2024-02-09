@@ -2,7 +2,7 @@
     -fx-background-image: url('../images/grafica.jpg');
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
-    -fx-border: 1px solid; /* Remove border */
+    -fx-border: 1px; /* Remove border */
     -fx-border-color: white; /* White border */
     -fx-text-fill: white; /* White text */
     -fx-text-align: center; /* Centered text */

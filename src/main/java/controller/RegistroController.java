@@ -12,16 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The type Registro controller.
+ * Clase RegistroController que se encarga de la lógica de la pantalla de registro
  *
  * @author Zebenzuí López Conde
  * @version 1.0
  * 2ºA DAM
  */
 
-/**
- * The type Registro controller.
- */
-// Clase RegistroController que se encarga de la lógica de la pantalla de registro
 public class RegistroController {
     /**
      * The Usuario.
@@ -42,6 +40,17 @@ public class RegistroController {
 
     /**
      * Registro.
+     * <p>
+     *     Método que se llama cuando se hace clic en el botón de registro
+     *     <p>
+     *         Verifica si los campos de texto están vacíos
+     *         Muestra un mensaje de error si los campos de texto están vacíos
+     *         Muestra un mensaje de error si las contraseñas no coinciden
+     *         Verifica si el nombre de usuario ya existe en el fichero
+     *         Muestra un mensaje de error si el nombre de usuario ya existe
+     *         Si todo está correcto, registra al usuario y muestra un mensaje de éxito
+     *         Cierra la ventana actual y abre la vista de inicio de sesión
+     *         Guarda los usuarios registrados en un fichero
      *
      * @param actionEvent the action event
      * @throws IOException the io exception
@@ -90,6 +99,10 @@ public class RegistroController {
 
     /**
      * Atras.
+     * <p>
+     *     Método que se llama cuando se hace clic en el botón de atrás
+     *     <p>
+     *         Cierra la ventana actual y abre la vista de inicio de sesión
      *
      * @param actionEvent the action event
      * @throws IOException the io exception
@@ -103,6 +116,8 @@ public class RegistroController {
 
     /**
      * Guardar usuarios en fichero.
+     * <p>
+     *     Método para guardar los usuarios registrados en un fichero
      *
      * @param user the user
      */
@@ -118,6 +133,8 @@ public class RegistroController {
 
     /**
      * Usuario existe en fichero boolean.
+     * <p>
+     *     Método para verificar si el nombre de usuario ya existe en el fichero
      *
      * @param usuario the usuario
      * @return the boolean

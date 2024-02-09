@@ -9,21 +9,33 @@ import java.io.IOException;
 
 /**
  * The type Registro view.
+ * <p>
+ *     Clase RegistroView que se encarga de mostrar la vista de registro
  *
  * @author Zebenzuí López Conde
  * @version 1.0  2ºA DAM
  */
-// Clase RegistroView que se encarga de mostrar la vista de registro
 public class RegistroView {
     // Stage actual
     private static Stage stage = new Stage();
 
     /**
      * Show.
+     * <p>
+     *     Método para mostrar la vista de registro
+     *     <p>
+     *         Oculta el stage actual
+     *         Crea un nuevo Stage
+     *         Cargador FXML para cargar la vista de registro
+     *         Crea una nueva escena con la vista de registro
+     *         Establece el título del nuevo escenario
+     *         Establece la escena del nuevo escenario
+     *         Hace que el nuevo escenario no sea redimensionable
+     *         Cierra la aplicación cuando se cierra el nuevo escenario
+     *         Muestra el nuevo escenario
      *
      * @throws IOException the io exception
      */
-// Método para mostrar la vista de registro
     public static void show() throws IOException {
         // Oculta el stage actual
         stage.hide();

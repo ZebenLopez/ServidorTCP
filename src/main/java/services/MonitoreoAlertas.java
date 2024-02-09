@@ -6,11 +6,12 @@ import javafx.scene.control.Alert;
 
 /**
  * The type Monitoreo alertas.
+ * <p>
+ * Clase MonitoreoAlertas que se encarga de monitorear y enviar alertas basadas en el uso de CPU, memoria y disco
  *
  * @author Zebenzuí López Conde
  * @version 1.0  2ºA DAM
  */
-// Clase MonitoreoAlertas que se encarga de monitorear y enviar alertas basadas en el uso de CPU, memoria y disco
 public class MonitoreoAlertas {
     /**
      * The Controlador controller.
@@ -20,22 +21,29 @@ public class MonitoreoAlertas {
 
     /**
      * Instantiates a new Monitoreo alertas.
+     * <p>
+     * Constructor de la clase MonitoreoAlertas
      *
      * @param controladorController the controlador controller
      */
-// Constructor de la clase MonitoreoAlertas
     public MonitoreoAlertas(ControladorController controladorController) {
         this.controladorController = controladorController;
     }
 
     /**
      * Monitoreo cpu.
+     * <p>
+     * Método para monitorear el uso de CPU y enviar una alerta si supera un cierto umbral
+     * <p>
+     * Si el uso de CPU supera el valor del slider, se imprime un mensaje en la consola, se crea una alerta, se obtiene el manejador del cliente por su identificador y se envía la alerta al cliente si el manejador del cliente no es nulo
+     * Si no se pudo enviar la alerta al cliente, se imprime un mensaje en la consola
+     * Se muestra una alerta en la interfaz de usuario
+     * El hilo duerme durante 5 segundos
      *
      * @param cpu           the cpu
      * @param identificador the identificador
      * @throws InterruptedException the interrupted exception
      */
-// Método para monitorear el uso de CPU y enviar una alerta si supera un cierto umbral
     public void monitoreoCPU(double cpu, String identificador) throws InterruptedException {
         new Thread(() -> {
             if (cpu >= controladorController.getCpuSliderValue()) {
@@ -70,12 +78,19 @@ public class MonitoreoAlertas {
 
     /**
      * Monitoreo memoria.
+     * <p>
+     *     Método para monitorear el uso de memoria y enviar una alerta si supera un cierto umbral
+     *     <p>
+     *         Si el uso de memoria supera el valor del slider, se imprime un mensaje en la consola, se crea una alerta, se obtiene el manejador del cliente por su identificador y se envía la alert
+     *         a al cliente si el manejador del cliente no es nulo
+     *         Si no se pudo enviar la alerta al cliente, se imprime un mensaje en la consola
+     *         Se muestra una alerta en la interfaz de usuario
+     *         El hilo duerme durante 10 segundos
      *
      * @param memoria       the memoria
      * @param identificador the identificador
      * @throws InterruptedException the interrupted exception
      */
-// Método para monitorear el uso de memoria y enviar una alerta si supera un cierto umbral
     public void monitoreoMemoria(double memoria, String identificador) throws InterruptedException {
         if (memoria >= controladorController.getMemoriaSliderValue()) {
             // Imprime un mensaje en la consola si el uso de memoria supera el valor del slider
@@ -108,12 +123,18 @@ public class MonitoreoAlertas {
 
     /**
      * Monitoreo disco.
+     * <p>
+     *     Método para monitorear el uso de disco y enviar una alerta si supera un cierto umbral
+     *     <p>
+     *         Si el uso de disco supera el valor del slider, se imprime un mensaje en la consola, se crea una alerta, se obtiene el manejador del cliente por su identificador y se envía la alerta al cliente si el manejador del cliente no es nulo
+     *         Si no se pudo enviar la alerta al cliente, se imprime un mensaje en la consola
+     *         Se muestra una alerta en la interfaz de usuario
+     *         El hilo duerme durante 10 segundos
      *
      * @param disco         the disco
      * @param identificador the identificador
      * @throws InterruptedException the interrupted exception
      */
-// Método para monitorear el uso de disco y enviar una alerta si supera un cierto umbral
     public void monitoreoDisco(double disco, String identificador) throws InterruptedException {
         if (disco >= controladorController.getDiscoSliderValue()) {
             // Imprime un mensaje en la consola si el uso de disco supera el valor del slider

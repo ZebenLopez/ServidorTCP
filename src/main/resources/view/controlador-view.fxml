@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import eu.hansolo.medusa.Gauge?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -11,6 +12,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="429.0" prefWidth="600.0" stylesheets="@../style/style-etiquetas.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControladorController">
@@ -18,12 +20,12 @@
         <ImageView fitHeight="451.0" fitWidth="721.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../images/grafica.jpg" />
         </ImageView>
-        <TabPane layoutX="206.0" layoutY="5.0" prefHeight="394.0" prefWidth="395.0" styleClass="tabPanel" tabClosingPolicy="UNAVAILABLE">
+        <TabPane layoutX="206.0" layoutY="5.0" prefHeight="423.0" prefWidth="396.0" styleClass="tabPanel" tabClosingPolicy="UNAVAILABLE">
             <Tab styleClass="botonesPanel" text="Control">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="394.0" prefWidth="413.0" styleClass="control">
-                    <Label fx:id="cpuLabel" layoutX="253.0" layoutY="70.0" textFill="WHITE">
+                    <Label fx:id="cpuLabel" layoutX="250.0" layoutY="140.0" textFill="WHITE">
                         <font>
-                            <Font name="System Bold" size="29.0" />
+                            <Font name="Consolas" size="20.0" />
                         </font>
                     </Label>
                     <Label layoutX="47.0" layoutY="20.0" text="Sistema" textFill="WHITE">
@@ -31,22 +33,12 @@
                             <Font name="Consolas Bold" size="29.0" />
                         </font>
                     </Label>
-                    <Label layoutX="47.0" layoutY="70.0" text="\% CPU" textFill="WHITE">
+                    <Label layoutX="54.0" layoutY="96.0" text="\% CPU" textFill="WHITE">
                         <font>
                             <Font name="Consolas Bold" size="29.0" />
                         </font>
                     </Label>
-                    <Label layoutX="47.0" layoutY="120.0" text="\% RAM" textFill="WHITE">
-                        <font>
-                            <Font name="Consolas Bold" size="29.0" />
-                        </font>
-                    </Label>
-                    <Label layoutX="118.0" layoutY="183.0" text="Almacenamiento" textFill="WHITE">
-                        <font>
-                            <Font name="Consolas Bold" size="20.0" />
-                        </font>
-                    </Label>
-                    <Label layoutX="47.0" layoutY="220.0" text="Total" textFill="WHITE">
+                    <Label layoutX="54.0" layoutY="196.0" text="\% RAM" textFill="WHITE">
                         <font>
                             <Font name="Consolas Bold" size="29.0" />
                         </font>
@@ -56,122 +48,334 @@
                             <Font name="System Bold" size="29.0" />
                         </font>
                     </Label>
-                    <Label layoutX="47.0" layoutY="270.0" text="Libre" textFill="WHITE">
+                    <Label fx:id="memoriaLabel" layoutX="250.0" layoutY="234.0" textFill="WHITE">
                         <font>
-                            <Font name="Consolas Bold" size="29.0" />
+                            <Font name="Consolas" size="20.0" />
                         </font>
                     </Label>
-                    <Label fx:id="memoriaLabel" layoutX="253.0" layoutY="120.0" textFill="WHITE">
-                        <font>
-                            <Font name="System Bold" size="29.0" />
-                        </font>
-                    </Label>
-                    <Label fx:id="espacioDisco" layoutX="253.0" layoutY="220.0" textFill="WHITE">
-                        <font>
-                            <Font name="System Bold" size="29.0" />
-                        </font>
-                    </Label>
-                    <Label fx:id="libreDisco" layoutX="253.0" layoutY="270.0" textFill="WHITE">
-                        <font>
-                            <Font name="System Bold" size="29.0" />
-                        </font>
-                    </Label>
-                    <Label fx:id="porcentajeDisco" layoutX="253.0" layoutY="320.0" textFill="WHITE">
-                        <font>
-                            <Font name="System Bold" size="29.0" />
-                        </font>
-                    </Label>
-                    <Label layoutX="47.0" layoutY="320.0" text="Ocupado" textFill="WHITE">
-                        <font>
-                            <Font name="Consolas Bold" size="29.0" />
-                        </font>
-                    </Label>
-               <Separator layoutX="58.0" layoutY="172.0" prefHeight="2.0" prefWidth="278.0" styleClass="separador" />
+                    <Gauge fx:id="graficoCPU" knobType="FLAT" layoutX="173.0" layoutY="76.0" lcdDesign="BLUE" lcdFont="LCD" markersVisible="true" maxMeasuredValueVisible="true" minMeasuredValueVisible="true" prefHeight="75.0" prefWidth="198.0" sectionIconsVisible="true" sectionTextVisible="true" sectionsAlwaysVisible="true" sectionsVisible="true" skinType="SIMPLE" thresholdVisible="true" tickLabelSectionsVisible="true" tickLabelsVisible="false" tickMarkRingVisible="true" tickMarkSectionsVisible="true" valueVisible="false">
+                        <averageColor>
+                            <Color green="0.23477157950401306" blue="1.0" />
+                        </averageColor>
+                        <barBackgroundColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </barBackgroundColor>
+                        <ledColor>
+                            <Color red="0.1656000018119812" green="0.3082467019557953" blue="0.9200000166893005" />
+                        </ledColor>
+                        <majorTickMarkColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </majorTickMarkColor>
+                        <mediumTickMarkColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </mediumTickMarkColor>
+                        <minorTickMarkColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </minorTickMarkColor>
+                        <needleColor>
+                            <Color green="0.2662690281867981" blue="0.7799999713897705" />
+                        </needleColor>
+                        <subTitleColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </subTitleColor>
+                        <thresholdColor>
+                            <Color red="0.0860000029206276" green="0.26771318912506104" blue="0.8600000143051147" />
+                        </thresholdColor>
+                        <tickLabelColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </tickLabelColor>
+                        <tickMarkColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </tickMarkColor>
+                        <titleColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </titleColor>
+                        <unitColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </unitColor>
+                        <knobColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </knobColor>
+                        <valueColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </valueColor>
+                        <zeroColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </zeroColor>
+                    </Gauge>
+                    <Gauge fx:id="graficoRAM" knobType="FLAT" layoutX="173.0" layoutY="176.0" lcdDesign="BLUE" lcdFont="LCD" markersVisible="true" maxMeasuredValueVisible="true" minMeasuredValueVisible="true" prefHeight="75.0" prefWidth="198.0" sectionIconsVisible="true" sectionTextVisible="true" sectionsAlwaysVisible="true" sectionsVisible="true" skinType="SIMPLE" thresholdVisible="true" tickLabelSectionsVisible="true" tickLabelsVisible="false" tickMarkRingVisible="true" tickMarkSectionsVisible="true" valueVisible="false">
+                        <averageColor>
+                            <Color green="0.23477157950401306" blue="1.0" />
+                        </averageColor>
+                        <barBackgroundColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </barBackgroundColor>
+                        <ledColor>
+                            <Color red="0.1656000018119812" green="0.3082467019557953" blue="0.9200000166893005" />
+                        </ledColor>
+                        <majorTickMarkColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </majorTickMarkColor>
+                        <mediumTickMarkColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </mediumTickMarkColor>
+                        <minorTickMarkColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </minorTickMarkColor>
+                        <needleColor>
+                            <Color green="0.2662690281867981" blue="0.7799999713897705" />
+                        </needleColor>
+                        <subTitleColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </subTitleColor>
+                        <thresholdColor>
+                            <Color red="0.0860000029206276" green="0.26771318912506104" blue="0.8600000143051147" />
+                        </thresholdColor>
+                        <tickLabelColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </tickLabelColor>
+                        <tickMarkColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </tickMarkColor>
+                        <titleColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </titleColor>
+                        <unitColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </unitColor>
+                        <knobColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </knobColor>
+                        <valueColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </valueColor>
+                        <zeroColor>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </zeroColor>
+                    </Gauge>
+               <Gauge fx:id="graficoTemperatura" knobType="FLAT" layoutX="173.0" layoutY="276.0" lcdDesign="BLUE" lcdFont="LCD" markersVisible="true" maxMeasuredValueVisible="true" minMeasuredValueVisible="true" prefHeight="75.0" prefWidth="198.0" sectionIconsVisible="true" sectionTextVisible="true" sectionsAlwaysVisible="true" sectionsVisible="true" skinType="SIMPLE" thresholdVisible="true" tickLabelSectionsVisible="true" tickLabelsVisible="false" tickMarkRingVisible="true" tickMarkSectionsVisible="true" valueVisible="false">
+                  <averageColor>
+                     <Color green="0.23477157950401306" blue="1.0" />
+                  </averageColor>
+                  <barBackgroundColor>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </barBackgroundColor>
+                  <ledColor>
+                     <Color red="0.1656000018119812" green="0.3082467019557953" blue="0.9200000166893005" />
+                  </ledColor>
+                  <majorTickMarkColor>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </majorTickMarkColor>
+                  <mediumTickMarkColor>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </mediumTickMarkColor>
+                  <minorTickMarkColor>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </minorTickMarkColor>
+                  <needleColor>
+                     <Color green="0.2662690281867981" blue="0.7799999713897705" />
+                  </needleColor>
+                  <subTitleColor>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </subTitleColor>
+                  <thresholdColor>
+                     <Color red="0.0860000029206276" green="0.26771318912506104" blue="0.8600000143051147" />
+                  </thresholdColor>
+                  <tickLabelColor>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </tickLabelColor>
+                  <tickMarkColor>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </tickMarkColor>
+                  <titleColor>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </titleColor>
+                  <unitColor>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </unitColor>
+                  <knobColor>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </knobColor>
+                  <valueColor>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </valueColor>
+                  <zeroColor>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </zeroColor>
+               </Gauge>
+               <Label fx:id="temperaturaLabel" layoutX="244.0" layoutY="339.0" textFill="WHITE">
+                  <font>
+                     <Font name="Consolas" size="20.0" />
+                  </font>
+               </Label>
+               <Label layoutX="15.0" layoutY="296.0" text="Temperatura" textFill="WHITE">
+                  <font>
+                     <Font name="Consolas Bold" size="29.0" />
+                  </font>
+               </Label>
                 </AnchorPane>
             </Tab>
+         <Tab styleClass="botonesPanel" text="Disco">
+            <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="394.0" prefWidth="413.0" styleClass="control">
+                  <children>
+                     <Label layoutX="82.0" layoutY="28.0" text="Almacenamiento" textFill="WHITE">
+                        <font>
+                           <Font name="Consolas Bold" size="30.0" />
+                        </font>
+                     </Label>
+                     <Label layoutX="42.0" layoutY="111.0" text="Total" textFill="WHITE">
+                        <font>
+                           <Font name="Consolas Bold" size="29.0" />
+                        </font>
+                     </Label>
+                     <Label layoutX="42.0" layoutY="197.0" text="Libre" textFill="WHITE">
+                        <font>
+                           <Font name="Consolas Bold" size="29.0" />
+                        </font>
+                     </Label>
+                     <Label fx:id="espacioDisco" layoutX="230.0" layoutY="107.0" textFill="WHITE">
+                        <font>
+                           <Font name="System Bold" size="29.0" />
+                        </font>
+                     </Label>
+                     <Label fx:id="libreDisco" layoutX="230.0" layoutY="193.0" textFill="WHITE">
+                        <font>
+                           <Font name="System Bold" size="29.0" />
+                        </font>
+                     </Label>
+                     <Label layoutX="26.0" layoutY="280.0" text="Ocupado" textFill="WHITE">
+                        <font>
+                           <Font name="Consolas Bold" size="29.0" />
+                        </font>
+                     </Label>
+                     <Separator layoutX="59.0" layoutY="63.0" prefHeight="2.0" prefWidth="278.0" styleClass="separador" />
+                     <Gauge fx:id="graficoDisco" layoutX="184.0" layoutY="264.0" prefHeight="84.0" prefWidth="186.0" skinType="LEVEL">
+                        <barBackgroundColor>
+                           <Color red="1.0" green="0.9925925731658936" blue="0.9925925731658936" />
+                        </barBackgroundColor>
+                        <majorTickMarkColor>
+                           <Color red="1.0" green="1.0" blue="1.0" />
+                        </majorTickMarkColor>
+                        <mediumTickMarkColor>
+                           <Color red="1.0" green="1.0" blue="1.0" />
+                        </mediumTickMarkColor>
+                        <minorTickMarkColor>
+                           <Color red="1.0" green="1.0" blue="1.0" />
+                        </minorTickMarkColor>
+                        <subTitleColor>
+                           <Color red="1.0" green="1.0" blue="1.0" />
+                        </subTitleColor>
+                        <tickLabelColor>
+                           <Color red="1.0" green="1.0" blue="1.0" />
+                        </tickLabelColor>
+                        <tickMarkColor>
+                           <Color red="1.0" green="1.0" blue="1.0" />
+                        </tickMarkColor>
+                        <titleColor>
+                           <Color red="1.0" green="1.0" blue="1.0" />
+                        </titleColor>
+                        <unitColor>
+                           <Color red="1.0" green="1.0" blue="1.0" />
+                        </unitColor>
+                        <valueColor>
+                           <Color red="1.0" green="1.0" blue="1.0" />
+                        </valueColor>
+                        <zeroColor>
+                           <Color red="1.0" green="1.0" blue="1.0" />
+                        </zeroColor>
+                     </Gauge>
+                  </children>
+               </AnchorPane>
+            </content>
+         </Tab>
             <Tab styleClass="botonesPanel" text="Alertas">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Label layoutX="36.0" layoutY="110.0" prefHeight="19.0" prefWidth="85.0" styleClass="labels" text="\% CPU" textFill="WHITE">
-                     <font>
-                        <Font name="Consolas Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="20.0" layoutY="180.0" prefHeight="23.0" prefWidth="118.0" styleClass="labels" text="\% Memoria" textFill="WHITE">
-                     <font>
-                        <Font name="Consolas Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="36.0" layoutY="260.0" prefHeight="19.0" prefWidth="85.0" styleClass="labels" text="\% Disco" textFill="WHITE">
-                     <font>
-                        <Font name="Consolas Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="11.0" layoutY="36.0" prefHeight="23.0" prefWidth="366.0" styleClass="titulo" text="Configuración de envío de alertas" textFill="WHITE">
-                     <font>
-                        <Font name="Consolas Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <Slider fx:id="cpuSlider" layoutX="160.0" layoutY="115.0" onDragDetected="#cpuSlider" value="100.0" />
-                  <Slider fx:id="memoriaSlider" layoutX="160.0" layoutY="185.0" onDragDetected="#memoriaSlider" value="100.0" />
-                  <Slider fx:id="discoSlider" layoutX="167.0" layoutY="265.0" onDragDetected="#discoSlider" value="100.0" />
-                  <Label fx:id="cpuLabelSlider" alignment="TOP_CENTER" layoutX="187.0" layoutY="92.0" prefHeight="19.0" prefWidth="85.0" styleClass="labels" text="100%" textFill="WHITE">
-                     <font>
-                        <Font name="Ebrima Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="memoriaLabelSlider" alignment="TOP_CENTER" layoutX="187.0" layoutY="165.0" prefHeight="19.0" prefWidth="85.0" styleClass="labels" text="100%" textFill="WHITE">
-                     <font>
-                        <Font name="Ebrima Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="discoLabelSlider" alignment="TOP_CENTER" layoutX="194.0" layoutY="243.0" prefHeight="19.0" prefWidth="85.0" styleClass="labels" text="100%" textFill="WHITE">
-                     <font>
-                        <Font name="Ebrima Bold" size="15.0" />
-                     </font>
-                  </Label>
-               </children></AnchorPane>
+                    <children>
+                        <Label layoutX="36.0" layoutY="110.0" prefHeight="19.0" prefWidth="85.0" styleClass="labels" text="\% CPU" textFill="WHITE">
+                            <font>
+                                <Font name="Consolas Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="180.0" prefHeight="23.0" prefWidth="118.0" styleClass="labels" text="\% Memoria" textFill="WHITE">
+                            <font>
+                                <Font name="Consolas Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="260.0" prefHeight="19.0" prefWidth="85.0" styleClass="labels" text="\% Disco" textFill="WHITE">
+                            <font>
+                                <Font name="Consolas Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="11.0" layoutY="36.0" prefHeight="23.0" prefWidth="366.0" styleClass="titulo" text="Configuración de envío de alertas" textFill="WHITE">
+                            <font>
+                                <Font name="Consolas Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Slider fx:id="cpuSlider" layoutX="160.0" layoutY="115.0" onDragDetected="#cpuSlider" value="100.0" />
+                        <Slider fx:id="memoriaSlider" layoutX="160.0" layoutY="185.0" onDragDetected="#memoriaSlider" value="100.0" />
+                        <Slider fx:id="discoSlider" layoutX="167.0" layoutY="265.0" onDragDetected="#discoSlider" value="100.0" />
+                        <Label fx:id="cpuLabelSlider" alignment="TOP_CENTER" layoutX="187.0" layoutY="92.0" prefHeight="19.0" prefWidth="85.0" styleClass="labels" text="100%" textFill="WHITE">
+                            <font>
+                                <Font name="Ebrima Bold" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="memoriaLabelSlider" alignment="TOP_CENTER" layoutX="187.0" layoutY="165.0" prefHeight="19.0" prefWidth="85.0" styleClass="labels" text="100%" textFill="WHITE">
+                            <font>
+                                <Font name="Ebrima Bold" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="discoLabelSlider" alignment="TOP_CENTER" layoutX="194.0" layoutY="243.0" prefHeight="19.0" prefWidth="85.0" styleClass="labels" text="100%" textFill="WHITE">
+                            <font>
+                                <Font name="Ebrima Bold" size="15.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
             </Tab>
             <Tab styleClass="botonesPanel" text="Reportes">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Button layoutX="71.0" layoutY="259.0" mnemonicParsing="false" onAction="#mostrarPDF" styleClass="boton" text="Mostrar" />
-                  <Button layoutX="172.0" layoutY="171.0" mnemonicParsing="false" onAction="#reporte" styleClass="boton" text="Generar" />
-                  <Label layoutX="41.0" layoutY="44.0" styleClass="etiquetas" text="Gestión de reportes" textFill="WHITE">
-                     <font>
-                        <Font name="Consolas Bold" size="30.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="61.0" layoutY="228.0" styleClass="etiquetas" text="Mostrar PDF" textFill="WHITE">
-                     <font>
-                        <Font name="Consolas Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="225.0" layoutY="228.0" styleClass="etiquetas" text="Mostrar Reporte" textFill="WHITE">
-                     <font>
-                        <Font name="Consolas Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="251.0" layoutY="259.0" mnemonicParsing="false" onAction="#mostrarReporte" styleClass="boton" text="Mostrar" />
-                  <Label layoutX="38.0" layoutY="145.0" styleClass="etiquetas" text="Generar informe con el cliente seleccionado" textFill="WHITE">
-                     <font>
-                        <Font name="Consolas Bold" size="14.0" />
-                     </font>
-                  </Label>
-               </children></AnchorPane>
+                    <children>
+                        <Button layoutX="71.0" layoutY="259.0" mnemonicParsing="false" onAction="#mostrarPDF" styleClass="boton" text="Mostrar" />
+                        <Button layoutX="172.0" layoutY="171.0" mnemonicParsing="false" onAction="#reporte" styleClass="boton" text="Generar" />
+                        <Label layoutX="41.0" layoutY="44.0" styleClass="etiquetas" text="Gestión de reportes" textFill="WHITE">
+                            <font>
+                                <Font name="Consolas Bold" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="61.0" layoutY="228.0" styleClass="etiquetas" text="Mostrar PDF" textFill="WHITE">
+                            <font>
+                                <Font name="Consolas Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="225.0" layoutY="228.0" styleClass="etiquetas" text="Mostrar Reporte" textFill="WHITE">
+                            <font>
+                                <Font name="Consolas Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Button layoutX="251.0" layoutY="259.0" mnemonicParsing="false" onAction="#mostrarReporte" styleClass="boton" text="Mostrar" />
+                        <Label layoutX="38.0" layoutY="145.0" styleClass="etiquetas" text="Generar informe con el cliente seleccionado" textFill="WHITE">
+                            <font>
+                                <Font name="Consolas Bold" size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
             </Tab>
         </TabPane>
-        <ScrollPane layoutX="14.0" layoutY="82.0" prefHeight="284.0" prefWidth="186.0">
+        <ScrollPane layoutX="14.0" layoutY="60.0" prefHeight="284.0" prefWidth="186.0">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="282.0" prefWidth="184.0" styleClass="scrollPanel">
-            <children>
-               <ListView fx:id="lista" prefHeight="284.0" prefWidth="186.0" styleClass="lista" />
-            </children></AnchorPane>
+                <children>
+                    <ListView fx:id="lista" prefHeight="284.0" prefWidth="186.0" styleClass="lista" />
+                </children>
+            </AnchorPane>
         </ScrollPane>
-      <Label layoutX="43.0" layoutY="31.0" text="Clientes" textFill="WHITE">
-         <font>
-            <Font name="Consolas Bold" size="29.0" />
-         </font>
-      </Label>
-      <Button layoutX="65.0" layoutY="387.0" mnemonicParsing="false" onAction="#ayuda" prefHeight="0.0" prefWidth="51.0" styleClass="boton" text="Ayuda" />
+        <Label layoutX="43.0" layoutY="21.0" text="Clientes" textFill="WHITE">
+            <font>
+                <Font name="Consolas Bold" size="29.0" />
+            </font>
+        </Label>
+        <Button layoutX="54.0" layoutY="399.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="24.0" prefWidth="106.0" styleClass="boton" text="Cerrar sesión" />
+        <Button layoutX="81.0" layoutY="361.0" mnemonicParsing="false" onAction="#ayuda" prefHeight="0.0" prefWidth="51.0" styleClass="boton" text="Ayuda" />
     </children>
 </AnchorPane>

@@ -1,26 +1,31 @@
 package controller;
 
+import eu.hansolo.medusa.Gauge;
 import javafx.application.Platform;
 import javafx.collections.SetChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import net.sf.jasperreports.engine.JRException;
-import services.Ayuda;
-import services.ClientHandler;
-import services.MonitoreoAlertas;
-import services.Reporte;
+import services.*;
+import view.ControladorView;
+import view.HelloApplication;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 /**
+ * The type Controlador controller.
  *
  * @author Zebenzuí López Conde
  * @version 1.0
@@ -28,15 +33,26 @@ import java.util.concurrent.TimeUnit;
  */
 
 /**
- * The type Controlador controller.
+ * Clase ControladorController que se encarga de controlar la interfaz de usuario y la lógica de la aplicación
  */
-// Clase ControladorController que se encarga de controlar la interfaz de usuario y la lógica de la aplicación
 public class ControladorController {
+    // Agrega estos campos para mantener una referencia a las instancias
+    private ControladorView controladorView;
+    private Conexion conexion;
+    public Gauge graficoCPU;
+    public Gauge graficoRAM;
+    public Label temperaturaLabel;
+    public Gauge graficoDisco;
+    public Gauge graficoTemperatura;
     /**
      * The Monitoreo alertas.
+     * MonitoreoAlertas monitoreoAlertas;
      */
-// Instancia de la clase MonitoreoAlertas para el monitoreo de alertas
     MonitoreoAlertas monitoreoAlertas;
+
+
+    // Variable para controlar si el hilo debe seguir ejecutándose o no
+    private volatile boolean running = true;
     /**
      * The Cpu slider.
      */
@@ -112,10 +128,11 @@ public class ControladorController {
 
     /**
      * The Update thread.
+     * Hilo que se ejecuta indefinidamente y actualiza los datos del cliente seleccionado en la interfaz de usuario cada segundo
      */
 // Hilo que se ejecuta indefinidamente y actualiza los datos del cliente seleccionado en la interfaz de usuario cada segundo
     Thread updateThread = new Thread(() -> {
-        while (true) {
+        while (running) {
             try {
                 Thread.sleep(1000);
                 Platform.runLater(() -> {
@@ -136,8 +153,12 @@ public class ControladorController {
 
     /**
      * Initialize.
+     * Método que se llama al inicializar la interfaz de usuario
+     * <p>
+     * Añade un SetChangeListener a clientIdentifiers para actualizar la lista cuando se conecta o desconecta un cliente
+     * Configura los sliders
+     * Inicia el hilo updateThread
      */
-// Método que se llama al inicializar la interfaz de usuario
     @FXML
     public void initialize() {
         // Añade un SetChangeListener a clientIdentifiers para actualizar la lista cuando se conecta o desconecta un cliente
@@ -168,10 +189,17 @@ public class ControladorController {
         configureSlider(memoriaSlider, memoriaLabelSlider);
         configureSlider(discoSlider, discoLabelSlider);
         updateThread.start();
+
+        controladorView = new ControladorView();
+        conexion = new Conexion();
     }
 
     /**
      * Actualizar datos cliente.
+     * <p>
+     * Método que se llama cuando se selecciona un nuevo cliente en la lista o cuando se necesita actualizar los datos del cliente seleccionado
+     * <p>
+     *      Busca el cliente con el identificador dado y actualiza las etiquetas en la interfaz de usuario con los datos del cliente
      *
      * @param identificadorCliente the identificador cliente
      * @throws InterruptedException the interrupted exception
@@ -186,13 +214,22 @@ public class ControladorController {
             sistema.setText(clientHandler.getSistema());
             espacioDisco.setText((clientHandler.getEspacioDisco()) + " GB");
             libreDisco.setText((clientHandler.getEspacioLibre()) + " GB");
-            porcentajeDisco.setText((clientHandler.getPorcentajeOcupado()) + "%");
+            graficoCPU.setValue(clientHandler.getCpu());
+            graficoRAM.setValue(clientHandler.getMemoria());
+            graficoDisco.setValue(clientHandler.getPorcentajeOcupado());
+            graficoTemperatura.setValue(clientHandler.getMemoria() - 12);
+            double temperatura = clientHandler.getMemoria() - 12.00;
+            DecimalFormat df = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
+            String temperaturaFormateada = df.format(temperatura);
+            temperaturaLabel.setText(temperaturaFormateada + "°C");
             enviarAlertas(identificadorCliente);
         }
     }
 
     /**
      * Enviar alertas.
+     * <p>
+     * Método para enviar alertas basadas en los datos del cliente
      *
      * @param identificadorCliente the identificador cliente
      */
@@ -216,6 +253,8 @@ public class ControladorController {
 
     /**
      * Borrar datos cliente.
+     * <p>
+     * Método para borrar los datos del cliente de la interfaz de usuario
      */
 // Método para borrar los datos del cliente de la interfaz de usuario
     public void borrarDatosCliente() {
@@ -224,11 +263,23 @@ public class ControladorController {
         sistema.setText("");
         espacioDisco.setText("");
         libreDisco.setText("");
-        porcentajeDisco.setText("");
+        graficoCPU.setValue(0);
+        graficoRAM.setValue(0);
+        graficoDisco.setValue(0);
+        graficoTemperatura.setValue(0);
+        temperaturaLabel.setText("");
     }
 
     /**
      * Reporte.
+     * <p>
+     * Método para generar un reporte del cliente seleccionado
+     * <p>
+     * Crea un nuevo hilo que ejecuta el método generarReporte() del cliente seleccionado
+     * Si no se ha seleccionado un cliente, muestra un mensaje de error
+     * Si se ha seleccionado un cliente, muestra un mensaje de éxito
+     * Si ocurre un error al generar el reporte, muestra un mensaje de error
+     * Si ocurre un error al generar el reporte, muestra un mensaje de error
      *
      * @param actionEvent the action event
      * @throws JRException the jr exception
@@ -270,6 +321,8 @@ public class ControladorController {
 
     /**
      * Cpu slider.
+     * <p>
+     * Métodos para manejar los eventos de los sliders
      *
      * @param mouseEvent the mouse event
      */
@@ -280,6 +333,8 @@ public class ControladorController {
 
     /**
      * Memoria slider.
+     * <p>
+     * Método para manejar los eventos de los sliders
      *
      * @param mouseEvent the mouse event
      */
@@ -289,6 +344,8 @@ public class ControladorController {
 
     /**
      * Disco slider.
+     * <p>
+     * Método para manejar los eventos de los sliders
      *
      * @param mouseEvent the mouse event
      */
@@ -297,6 +354,15 @@ public class ControladorController {
     }
 
     // Método para configurar los sliders
+
+    /**
+     * Configure slider.
+     * <p>
+     * Método para configurar los sliders
+     *
+     * @param slider the slider
+     * @param label  the label
+     */
     private void configureSlider(Slider slider, Label label) {
         slider.valueProperty().addListener((observable, oldValue, newValue) -> {
             label.setText(String.format("%.2f", newValue) + "%");
@@ -305,6 +371,8 @@ public class ControladorController {
 
     /**
      * Gets cpu slider value.
+     * <p>
+     * Métodos para obtener los valores de los sliders
      *
      * @return the cpu slider value
      */
@@ -315,6 +383,8 @@ public class ControladorController {
 
     /**
      * Gets memoria slider value.
+     * <p>
+     * Método para obtener los valores de los sliders
      *
      * @return the memoria slider value
      */
@@ -324,6 +394,8 @@ public class ControladorController {
 
     /**
      * Gets disco slider value.
+     * <p>
+     * Método para obtener los valores de los sliders
      *
      * @return the disco slider value
      */
@@ -333,6 +405,13 @@ public class ControladorController {
 
     /**
      * Mostrar reporte.
+     * <p>
+     * Métodos para mostrar el reporte y el PDF del cliente seleccionado
+     * <p>
+     * Crea un nuevo hilo que ejecuta el método mostrarReporte() del cliente seleccionado
+     * Si no se ha seleccionado un cliente, muestra un mensaje de error
+     * Si se ha seleccionado un cliente, muestra un mensaje de éxito
+     * Si ocurre un error al mostrar el reporte, muestra un mensaje de error
      *
      * @param actionEvent the action event
      */
@@ -359,6 +438,13 @@ public class ControladorController {
 
     /**
      * Mostrar pdf.
+     * <p>
+     * Método para mostrar el PDF del cliente seleccionado
+     * <p>
+     * Crea un nuevo hilo que ejecuta el método mostrarPDF() del cliente seleccionado
+     * Si no se ha seleccionado un cliente, muestra un mensaje de error
+     * Si se ha seleccionado un cliente, muestra un mensaje de éxito
+     * Si ocurre un error al mostrar el PDF, muestra un mensaje de error
      *
      * @param actionEvent the action event
      */
@@ -381,7 +467,62 @@ public class ControladorController {
             }
         }).start();
     }
+
+    /**
+     * Ayuda.
+     * <p>
+     * Método para abrir la ayuda
+     *
+     * @param actionEvent the action event
+     */
+
     public void ayuda(ActionEvent actionEvent) {
         Ayuda.abrirHelp();
+    }
+
+
+    /**
+     * Cerrar sesion.
+     * <p>
+     * Método para cerrar la sesión
+     * <p>
+     * Obtiene el ClientHandler correspondiente
+     * Cierra la conexión
+     * Detén el hilo de actualización
+     * Cierra la ventana actual y abre la vista de inicio de sesión
+     *
+     * @param actionEvent the action event
+     * @throws IOException the io exception
+     */
+//    public void cerrarSesion(ActionEvent actionEvent) throws IOException {
+//        // Obtén el ClientHandler correspondiente
+//        ClientHandler clientHandler = ClientHandler.getClientHandlerByIdentifier(selectedClient);
+//        if (clientHandler != null) {
+//            // Cierra la conexión
+//            clientHandler.cerrarConexion();
+//        }
+//
+//        // Detén el hilo de actualización
+//        running = false;
+//
+//        // Cierra la ventana actual y abre la vista de inicio de sesión
+//        ((Button) actionEvent.getSource()).getScene().getWindow().hide();
+//        HelloApplication.showLogin();
+//    }
+    public void cerrarSesion(ActionEvent actionEvent) throws IOException {
+        // Iterate over all ClientHandlers and close the connection
+        for (ClientHandler clientHandler : ClientHandler.getClientHandlers().values()) {
+            clientHandler.cerrarConexion();
+        }
+
+        // Detén la conexión con el servidor
+        controladorView.stop();
+        conexion.stop();
+
+        // Detén el hilo de actualización
+        running = false;
+        // Cierra la ventana actual y abre la vista de inicio de sesión
+        ((Button) actionEvent.getSource()).getScene().getWindow().hide();
+        HelloApplication.showLogin();
     }
 }

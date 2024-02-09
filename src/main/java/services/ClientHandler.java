@@ -13,11 +13,12 @@ import javafx.collections.ObservableSet;
 
 /**
  * The type Client handler.
+ * <p>
+ *     Clase que se encarga de manejar las conexiones de los clientes
  *
  * @author Zebenzuí López Conde
  * @version 1.0 2ºA DAM
  */
-// Clase ClientHandler que se encarga de manejar las conexiones de los clientes
 public class ClientHandler extends Thread {
     private PrintWriter csvWriter;
 
@@ -43,6 +44,8 @@ public class ClientHandler extends Thread {
 
     /**
      * Instantiates a new Client handler.
+     * <p>
+     *     Constructor de la clase ClientHandler
      *
      * @param connectionSocket the connection socket
      */
@@ -54,6 +57,10 @@ public class ClientHandler extends Thread {
 
     /**
      * Gets client identifiers.
+     * <p>
+     *     Método para obtener los identificadores de los clientes
+     *     <p>
+     *         Método estático para obtener los identificadores de los clientes
      *
      * @return the client identifiers
      */
@@ -63,7 +70,19 @@ public class ClientHandler extends Thread {
         return clientIdentifiers;
     }
 
-    // Método que se ejecuta cuando se inicia el hilo
+    /**
+     * Run.
+     * <p>
+     *     Método que se ejecuta cuando se inicia el hilo
+     *     <p>
+     *         Crear un BufferedReader para leer la entrada del cliente
+     *         Leer la entrada completa del cliente
+     *         Deserializar la entrada en una lista de objetos
+     *         Extraer los datos y almacenarlos en variables
+     *         Crear un identificador único para cada clientSocket
+     *         Llama al método para crear el archivo .csv
+     *         Imprimir los datos del cliente
+     */
     @Override
     public void run() {
         try {
@@ -95,7 +114,7 @@ public class ClientHandler extends Thread {
                 crearArchivoCSV(datosCliente);
 
                 // Imprimir los datos del cliente
-                System.out.println("Datos recibidos del cliente "+ identificador + ": " + datosCliente);
+//                System.out.println("Datos recibidos del cliente "+ identificador + ": " + datosCliente);
                 if (sistema == null || usuario == null) {
                     System.out.println("No se puede obtener el sistema o el usuario");
                 } else {
@@ -104,8 +123,6 @@ public class ClientHandler extends Thread {
                 // Crear un identificador único para cada clientSocket
                 clientIdentifiers.add(identificador);
                 clientHandlers.put(identificador, this);
-
-                // Llama al método para crear el archivo .csv
 
             }
         } catch (IOException e) {
@@ -116,10 +133,17 @@ public class ClientHandler extends Thread {
 
     /**
      * Crear archivo csv.
+     * <p>
+     *     Método para crear un archivo CSV con los datos del cliente
+     *     <p>
+     *         Extraer los datos y almacenarlos en variables
+     *         Crear un archivo .csv con el nombre del usuario
+     *         Escribe los encabezados en el archivo .csv solo si el archivo estaba vacío
+     *         Escribe los datos del cliente en el archivo .csv
+     *         Limpia el PrintWriter para asegurarte de que los datos se escriban en el archivo
      *
      * @param datosCliente the datos cliente
      */
-// Método para crear un archivo CSV con los datos del cliente
     public void crearArchivoCSV(List<Object> datosCliente) {
         try {
             // Extraer los datos y almacenarlos en variables
@@ -156,7 +180,14 @@ public class ClientHandler extends Thread {
         }
     }
 
-    // Método que se llama cuando un cliente se desconecta
+    /**
+     * On client disconnected.
+     * <p>
+     *     Método que se llama cuando un cliente se desconecta
+     *     <p>
+     *         Elimina el identificador del cliente del conjunto de identificadores
+     *         Cierra el PrintWriter cuando el cliente se desconecta
+     */
     private void onClientDisconnected() {
         System.out.println("Cliente desconectado: " + identificador);
         clientIdentifiers.remove(identificador);
@@ -171,11 +202,12 @@ public class ClientHandler extends Thread {
 
     /**
      * Gets client handler by identifier.
+     * <p>
+     *     Método para obtener un ClientHandler por su identificador
      *
      * @param identifier the identifier
      * @return the client handler by identifier
      */
-// Método para obtener un ClientHandler por su identificador
     public static ClientHandler getClientHandlerByIdentifier(String identifier) {
         return clientHandlers.get(identifier);
     }
@@ -183,10 +215,11 @@ public class ClientHandler extends Thread {
 
     /**
      * Gets sistema.
+     * <p>
+     *     Método para obtener el sistema
      *
      * @return the sistema
      */
-// Métodos para obtener los datos del cliente
     public String getSistema() {
         return sistema;
     }
@@ -247,10 +280,11 @@ public class ClientHandler extends Thread {
 
     /**
      * Enviar alerta.
+     * <p>
+     *     Método para enviar una alerta al cliente
      *
      * @param alerta the alerta
      */
-// Método para enviar una alerta al cliente
     public void enviarAlerta(String alerta) {
         try {
             PrintWriter outToClient = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -259,5 +293,21 @@ public class ClientHandler extends Thread {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void cerrarConexion() {
+    if (clientSocket != null && !clientSocket.isClosed()) {
+        try {
+            clientSocket.close();
+            System.out.println("Socket del cliente cerrado");
+        } catch (IOException e) {
+            System.out.println("Error al cerrar el socket del cliente");
+            e.printStackTrace();
+        }
+    }
+}
+
+    public static Map<String, ClientHandler> getClientHandlers() {
+        return clientHandlers;
     }
 }

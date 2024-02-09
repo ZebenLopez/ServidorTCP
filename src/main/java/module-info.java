@@ -6,6 +6,7 @@ module org.example.servidortcpfx {
     requires opencsv;
     requires java.sql;
     requires java.desktop;
+    requires eu.hansolo.medusa;
 
 
     exports controller;

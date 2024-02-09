@@ -14,11 +14,12 @@ import java.io.IOException;
 
 /**
  * The type Hello controller.
+ * <p>
+ *     Clase HelloController que se encarga de la lógica de la pantalla de inicio de sesión
  *
  * @author Zebenzuí López Conde
  * @version 1.0  2ºA DAM
  */
-// Clase HelloController que se encarga de la lógica de la pantalla de inicio de sesión
 public class HelloController {
 
     /**
@@ -33,11 +34,18 @@ public class HelloController {
 
     /**
      * Login.
+     * <p>
+     *     Método que se llama cuando se hace clic en el botón de inicio de sesión
+     *     <p>
+     *         Verifica si el usuario y la contraseña son correctos y muestra un mensaje de éxito o error
+     *         <p>
+     *             Si el usuario y la contraseña son correctos, abre la vista del controlador
+     *             Si el usuario o la contraseña son incorrectos, muestra un mensaje de error
+     *             Si los campos de texto están vacíos, muestra un mensaje de error
      *
      * @param actionEvent the action event
      * @throws IOException the io exception
      */
-// Método que se llama cuando se hace clic en el botón de inicio de sesión
     public void login(ActionEvent actionEvent) throws IOException {
         // Verifica si los campos de texto están vacíos
         if (usuario.getText().equals("") || password.getText().equals("")) {
@@ -70,11 +78,14 @@ public class HelloController {
 
     /**
      * Registro.
+     * <p>
+     *     Método que se llama cuando se hace clic en el botón de registro
+     *     <p>
+     *         Cierra la ventana actual y abre la vista de registro
      *
      * @param actionEvent the action event
      * @throws IOException the io exception
      */
-// Método que se llama cuando se hace clic en el botón de registro
     public void registro(ActionEvent actionEvent) throws IOException {
         // Cierra la ventana actual y abre la vista de registro
         ((Button) actionEvent.getSource()).getScene().getWindow().hide();
@@ -83,12 +94,15 @@ public class HelloController {
 
     /**
      * Verificar usuario boolean.
+     * <p>
+     *     Método para verificar si el usuario y la contraseña son correctos
+     *     <p>
+     *         Lee el archivo de usuarios y verifica si el usuario y la contraseña son correctos
      *
      * @param usuario  the usuario
      * @param password the password
      * @return the boolean
      */
-// Método para verificar si el usuario y la contraseña son correctos
     public boolean verificarUsuario(String usuario, String password) {
         // Lee el archivo de usuarios y verifica si el usuario y la contraseña son correctos
         try (BufferedReader reader = new BufferedReader(new FileReader("usuarios.txt"))) {
@@ -107,11 +121,12 @@ public class HelloController {
 
     /**
      * Olvido contraseña.
+     * <p>
+     *     Método que se llama cuando se hace clic en el enlace de olvido de contraseña
      *
      * @param mouseEvent the mouse event
      */
-// Método que se llama cuando se hace clic en el enlace de olvido de contraseña
-    public void olvidoContraseña(MouseEvent mouseEvent) {
+    public void olvidoContrasegna(MouseEvent mouseEvent) {
         // Muestra un mensaje con la contraseña de administrador
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Olvidó su contraseña");

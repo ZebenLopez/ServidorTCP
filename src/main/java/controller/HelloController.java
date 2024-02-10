@@ -39,9 +39,9 @@ public class HelloController {
      *     <p>
      *         Verifica si el usuario y la contraseña son correctos y muestra un mensaje de éxito o error
      *         <p>
-     *             Si el usuario y la contraseña son correctos, abre la vista del controlador
-     *             Si el usuario o la contraseña son incorrectos, muestra un mensaje de error
-     *             Si los campos de texto están vacíos, muestra un mensaje de error
+     *             Si el usuario y la contraseña son correctos, abre la vista del controlador<br>
+     *             Si el usuario o la contraseña son incorrectos, muestra un mensaje de error<br>
+     *             Si los campos de texto están vacíos, muestra un mensaje de error<br>
      *
      * @param actionEvent the action event
      * @throws IOException the io exception

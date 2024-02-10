@@ -24,14 +24,14 @@ public class RegistroView {
      * <p>
      *     Método para mostrar la vista de registro
      *     <p>
-     *         Oculta el stage actual
-     *         Crea un nuevo Stage
-     *         Cargador FXML para cargar la vista de registro
-     *         Crea una nueva escena con la vista de registro
-     *         Establece el título del nuevo escenario
-     *         Establece la escena del nuevo escenario
-     *         Hace que el nuevo escenario no sea redimensionable
-     *         Cierra la aplicación cuando se cierra el nuevo escenario
+     *         Oculta el stage actual <br>
+     *         Crea un nuevo Stage <br>
+     *         Cargador FXML para cargar la vista de registro <br>
+     *         Crea una nueva escena con la vista de registro <br>
+     *         Establece el título del nuevo escenario <br>
+     *         Establece la escena del nuevo escenario <br>
+     *         Hace que el nuevo escenario no sea redimensionable <br>
+     *         Cierra la aplicación cuando se cierra el nuevo escenario <br>
      *         Muestra el nuevo escenario
      *
      * @throws IOException the io exception

@@ -127,7 +127,7 @@ public class ControladorController {
     }
 
     /**
-     * The Update thread.
+     * Hilo de actualización <br>
      * Hilo que se ejecuta indefinidamente y actualiza los datos del cliente seleccionado en la interfaz de usuario cada segundo
      */
 // Hilo que se ejecuta indefinidamente y actualiza los datos del cliente seleccionado en la interfaz de usuario cada segundo
@@ -152,12 +152,12 @@ public class ControladorController {
     });
 
     /**
-     * Initialize.
+     * Inicio<br>
      * Método que se llama al inicializar la interfaz de usuario
      * <p>
-     * Añade un SetChangeListener a clientIdentifiers para actualizar la lista cuando se conecta o desconecta un cliente
-     * Configura los sliders
-     * Inicia el hilo updateThread
+     * Añade un SetChangeListener a clientIdentifiers para actualizar la lista cuando se conecta o desconecta un cliente<br>
+     * Configura los sliders<br>
+     * Inicia el hilo updateThread<br>
      */
     @FXML
     public void initialize() {
@@ -275,11 +275,11 @@ public class ControladorController {
      * <p>
      * Método para generar un reporte del cliente seleccionado
      * <p>
-     * Crea un nuevo hilo que ejecuta el método generarReporte() del cliente seleccionado
-     * Si no se ha seleccionado un cliente, muestra un mensaje de error
-     * Si se ha seleccionado un cliente, muestra un mensaje de éxito
-     * Si ocurre un error al generar el reporte, muestra un mensaje de error
-     * Si ocurre un error al generar el reporte, muestra un mensaje de error
+     * Crea un nuevo hilo que ejecuta el método generarReporte() del cliente seleccionado<br>
+     * Si no se ha seleccionado un cliente, muestra un mensaje de error<br>
+     * Si se ha seleccionado un cliente, muestra un mensaje de éxito<br>
+     * Si ocurre un error al generar el reporte, muestra un mensaje de error<br>
+     * Si ocurre un error al generar el reporte, muestra un mensaje de error<br>
      *
      * @param actionEvent the action event
      * @throws JRException the jr exception
@@ -408,10 +408,10 @@ public class ControladorController {
      * <p>
      * Métodos para mostrar el reporte y el PDF del cliente seleccionado
      * <p>
-     * Crea un nuevo hilo que ejecuta el método mostrarReporte() del cliente seleccionado
-     * Si no se ha seleccionado un cliente, muestra un mensaje de error
-     * Si se ha seleccionado un cliente, muestra un mensaje de éxito
-     * Si ocurre un error al mostrar el reporte, muestra un mensaje de error
+     * Crea un nuevo hilo que ejecuta el método mostrarReporte() del cliente seleccionado<br>
+     * Si no se ha seleccionado un cliente, muestra un mensaje de error<br>
+     * Si se ha seleccionado un cliente, muestra un mensaje de éxito<br>
+     * Si ocurre un error al mostrar el reporte, muestra un mensaje de error<br>
      *
      * @param actionEvent the action event
      */
@@ -441,10 +441,10 @@ public class ControladorController {
      * <p>
      * Método para mostrar el PDF del cliente seleccionado
      * <p>
-     * Crea un nuevo hilo que ejecuta el método mostrarPDF() del cliente seleccionado
-     * Si no se ha seleccionado un cliente, muestra un mensaje de error
-     * Si se ha seleccionado un cliente, muestra un mensaje de éxito
-     * Si ocurre un error al mostrar el PDF, muestra un mensaje de error
+     * Crea un nuevo hilo que ejecuta el método mostrarPDF() del cliente seleccionado<br>
+     * Si no se ha seleccionado un cliente, muestra un mensaje de error<br>
+     * Si se ha seleccionado un cliente, muestra un mensaje de éxito<br>
+     * Si ocurre un error al mostrar el PDF, muestra un mensaje de error<br>
      *
      * @param actionEvent the action event
      */
@@ -486,10 +486,10 @@ public class ControladorController {
      * <p>
      * Método para cerrar la sesión
      * <p>
-     * Obtiene el ClientHandler correspondiente
-     * Cierra la conexión con el cliente
-     * Cierra la conexión con el servidor
-     * Detiene el hilo de actualización
+     * Obtiene el ClientHandler correspondiente<br>
+     * Cierra la conexión con el cliente<br>
+     * Cierra la conexión con el servidor<br>
+     * Detiene el hilo de actualización<br>
      * Cierra la ventana actual y abre la vista de inicio de sesión
      *
      * @param actionEvent the action event

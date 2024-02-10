@@ -24,14 +24,14 @@ public class HelloApplication extends Application {
      * <p>
      *     Método para iniciar la aplicación y mostrar la vista de inicio de sesión
      *     <p>
-     *         Crear un nuevo Stage
-     *         Establecer el stage actual
-     *         Cargador FXML para cargar la vista de inicio de sesión
-     *         Crear una nueva escena con la vista de inicio de sesión
-     *         Establecer el título del escenario
-     *         Establecer la escena del escenario
-     *         Cerrar la aplicación cuando se cierra el escenario
-     *         Mostrar el escenario
+     *         Crear un nuevo Stage <br>
+     *         Establecer el stage actual <br>
+     *         Cargador FXML para cargar la vista de inicio de sesión <br>
+     *         Crear una nueva escena con la vista de inicio de sesión <br>
+     *         Establecer el título del escenario <br>
+     *         Establecer la escena del escenario <br>
+     *         Cerrar la aplicación cuando se cierra el escenario <br>
+     *         Mostrar el escenario <br>
      *
      * @param stage the stage
      * @throws IOException the io exception
@@ -64,8 +64,8 @@ public class HelloApplication extends Application {
      * <p>
      *     Método para mostrar la vista de inicio de sesión
      *     <p>
-     *         Cargador FXML para cargar la vista de inicio de sesión
-     *         Crea una nueva escena con la vista de inicio de sesión
+     *         Cargador FXML para cargar la vista de inicio de sesión <br>
+     *         Crea una nueva escena con la vista de inicio de sesión <br>
      *         Establece el título del escenario
      *
      * @throws IOException the io exception

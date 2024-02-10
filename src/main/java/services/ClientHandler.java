@@ -75,12 +75,12 @@ public class ClientHandler extends Thread {
      * <p>
      *     Método que se ejecuta cuando se inicia el hilo
      *     <p>
-     *         Crear un BufferedReader para leer la entrada del cliente
-     *         Leer la entrada completa del cliente
-     *         Deserializar la entrada en una lista de objetos
-     *         Extraer los datos y almacenarlos en variables
-     *         Crear un identificador único para cada clientSocket
-     *         Llama al método para crear el archivo .csv
+     *         Crear un BufferedReader para leer la entrada del cliente<br>
+     *         Leer la entrada completa del cliente<br>
+     *         Deserializar la entrada en una lista de objetos<br>
+     *         Extraer los datos y almacenarlos en variables<br>
+     *         Crear un identificador único para cada clientSocket<br>
+     *         Llama al método para crear el archivo .csv<br>
      *         Imprimir los datos del cliente
      */
     @Override
@@ -136,10 +136,10 @@ public class ClientHandler extends Thread {
      * <p>
      *     Método para crear un archivo CSV con los datos del cliente
      *     <p>
-     *         Extraer los datos y almacenarlos en variables
-     *         Crear un archivo .csv con el nombre del usuario
-     *         Escribe los encabezados en el archivo .csv solo si el archivo estaba vacío
-     *         Escribe los datos del cliente en el archivo .csv
+     *         Extraer los datos y almacenarlos en variables<br>
+     *         Crear un archivo .csv con el nombre del usuario<br>
+     *         Escribe los encabezados en el archivo .csv solo si el archivo estaba vacío<br>
+     *         Escribe los datos del cliente en el archivo .csv<br>
      *         Limpia el PrintWriter para asegurarte de que los datos se escriban en el archivo
      *
      * @param datosCliente the datos cliente
@@ -185,7 +185,7 @@ public class ClientHandler extends Thread {
      * <p>
      *     Método que se llama cuando un cliente se desconecta
      *     <p>
-     *         Elimina el identificador del cliente del conjunto de identificadores
+     *         Elimina el identificador del cliente del conjunto de identificadores<br>
      *         Cierra el PrintWriter cuando el cliente se desconecta
      */
     private void onClientDisconnected() {

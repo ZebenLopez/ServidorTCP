@@ -43,14 +43,14 @@ public class RegistroController {
      * <p>
      *     Método que se llama cuando se hace clic en el botón de registro
      *     <p>
-     *         Verifica si los campos de texto están vacíos
-     *         Muestra un mensaje de error si los campos de texto están vacíos
-     *         Muestra un mensaje de error si las contraseñas no coinciden
-     *         Verifica si el nombre de usuario ya existe en el fichero
-     *         Muestra un mensaje de error si el nombre de usuario ya existe
-     *         Si todo está correcto, registra al usuario y muestra un mensaje de éxito
-     *         Cierra la ventana actual y abre la vista de inicio de sesión
-     *         Guarda los usuarios registrados en un fichero
+     *         Verifica si los campos de texto están vacíos<br>
+     *         Muestra un mensaje de error si los campos de texto están vacíos<br>
+     *         Muestra un mensaje de error si las contraseñas no coinciden<br>
+     *         Verifica si el nombre de usuario ya existe en el fichero<br>
+     *         Muestra un mensaje de error si el nombre de usuario ya existe<br>
+     *         Si todo está correcto, registra al usuario y muestra un mensaje de éxito<br>
+     *         Cierra la ventana actual y abre la vista de inicio de sesión<br>
+     *         Guarda los usuarios registrados en un fichero<br>
      *
      * @param actionEvent the action event
      * @throws IOException the io exception

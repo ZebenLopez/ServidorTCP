@@ -28,19 +28,19 @@ public class ControladorView {
      * <p>
      *     Método para mostrar la vista del controlador
      *     <p>
-     *         Oculta el stage actual
-     *         Crea un nuevo Stage
-     *         Cargador FXML para cargar la vista principal
-     *         Crea una nueva escena con la vista principal
-     *         Establece el título del nuevo escenario
-     *         Establece la escena del nuevo escenario
-     *         Hace que el nuevo escenario no sea redimensionable
-     *         Cierra la aplicación cuando se cierra el nuevo escenario
-     *         Muestra el nuevo escenario
-     *         Obtiene el controlador de la vista principal
-     *         Crea un nuevo hilo para conectar con el servidor
-     *         Intenta conectar con el servidor
-     *         Lanza una excepción si ocurre un error al conectar con el servidor
+     *         Oculta el stage actual <br>
+     *         Crea un nuevo Stage <br>
+     *         Cargador FXML para cargar la vista principal <br>
+     *         Crea una nueva escena con la vista principal <br>
+     *         Establece el título del nuevo escenario <br>
+     *         Establece la escena del nuevo escenario <br>
+     *         Hace que el nuevo escenario no sea redimensionable <br>
+     *         Cierra la aplicación cuando se cierra el nuevo escenario <br>
+     *         Muestra el nuevo escenario <br>
+     *         Obtiene el controlador de la vista principal <br>
+     *         Crea un nuevo hilo para conectar con el servidor <br>
+     *         Intenta conectar con el servidor <br>
+     *         Lanza una excepción si ocurre un error al conectar con el servidor <br>
      *
      * @throws IOException the io exception
      */
@@ -90,8 +90,8 @@ public class ControladorView {
      * <p>
      *     Método para detener la conexión con el servidor
      *     <p>
-     *         Interrumpe el hilo de conexión
-     *         Detiene la conexión con el servidor
+     *         Interrumpe el hilo de conexión <br>
+     *         Detiene la conexión con el servidor <br>
      *         Cierra el stage
      */
     public void stop() {

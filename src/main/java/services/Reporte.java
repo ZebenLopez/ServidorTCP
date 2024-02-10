@@ -35,14 +35,14 @@ public class Reporte {
      * <p>
      *     Método para generar los reportes para un cliente específico
      *     <p>
-     *         Si el archivo del reporte no existe, muestra una alerta en la interfaz de usuario
-     *         Si el archivo CSV no existe, lanza una excepción
-     *         Compila el reporte
-     *         Crea un nuevo DataSource a partir del archivo CSV
-     *         Crea un nuevo HashMap para los parámetros del reporte
-     *         Llena el reporte con los datos del DataSource y los parámetros
-     *         Almacena el JasperPrint en el Map con el idCliente como clave
-     *         Exporta el reporte a un archivo PDF
+     *         Si el archivo del reporte no existe, muestra una alerta en la interfaz de usuario<br>
+     *         Si el archivo CSV no existe, lanza una excepción<br>
+     *         Compila el reporte<br>
+     *         Crea un nuevo DataSource a partir del archivo CSV<br>
+     *         Crea un nuevo HashMap para los parámetros del reporte<br>
+     *         Llena el reporte con los datos del DataSource y los parámetros <br>
+     *         Almacena el JasperPrint en el Map con el idCliente como clave <br>
+     *         Exporta el reporte a un archivo PDF <br>
      *         Si ocurre un error, imprime la traza de la excepción
      *
      * @param idCliente the id cliente
@@ -106,9 +106,9 @@ public class Reporte {
      * <p>
      *     Método para mostrar el reporte de un cliente específico
      *     <p>
-     *         Crea un nuevo hilo para mostrar el reporte
-     *         Recupera el JasperPrint del Map utilizando el id como clave
-     *         Si el JasperPrint es nulo, muestra una alerta en la interfaz de usuario
+     *         Crea un nuevo hilo para mostrar el reporte <br>
+     *         Recupera el JasperPrint del Map utilizando el id como clave <br>
+     *         Si el JasperPrint es nulo, muestra una alerta en la interfaz de usuario <br>
      *         Si el JasperPrint no es nulo, muestra el reporte
      *
      * @param id the id
@@ -139,12 +139,12 @@ public class Reporte {
      * <p>
      *     Método para mostrar el PDF de un cliente específico
      *     <p>
-     *         Establece la ruta del archivo PDF basado en el id del cliente
-     *         Crea un nuevo hilo para mostrar el PDF
-     *         Verifica si el archivo PDF existe
-     *         Si el archivo PDF existe, lo abre
-     *         Si ocurre un error al abrir el archivo, lanza una excepción
-     *         Si el archivo PDF no existe, muestra una alerta en la interfaz de usuario
+     *         Establece la ruta del archivo PDF basado en el id del cliente <br>
+     *         Crea un nuevo hilo para mostrar el PDF <br>
+     *         Verifica si el archivo PDF existe <br>
+     *         Si el archivo PDF existe, lo abre <br>
+     *         Si ocurre un error al abrir el archivo, lanza una excepción <br>
+     *         Si el archivo PDF no existe, muestra una alerta en la interfaz de usuario <br>
      *
      * @param id the id
      */

@@ -35,9 +35,9 @@ public class MonitoreoAlertas {
      * <p>
      * Método para monitorear el uso de CPU y enviar una alerta si supera un cierto umbral
      * <p>
-     * Si el uso de CPU supera el valor del slider, se imprime un mensaje en la consola, se crea una alerta, se obtiene el manejador del cliente por su identificador y se envía la alerta al cliente si el manejador del cliente no es nulo
-     * Si no se pudo enviar la alerta al cliente, se imprime un mensaje en la consola
-     * Se muestra una alerta en la interfaz de usuario
+     * Si el uso de CPU supera el valor del slider, se imprime un mensaje en la consola, se crea una alerta, se obtiene el manejador del cliente por su identificador y se envía la alerta al cliente si el manejador del cliente no es nulo<br>
+     * Si no se pudo enviar la alerta al cliente, se imprime un mensaje en la consola<br>
+     * Se muestra una alerta en la interfaz de usuario<br>
      * El hilo duerme durante 5 segundos
      *
      * @param cpu           the cpu
@@ -81,10 +81,10 @@ public class MonitoreoAlertas {
      * <p>
      *     Método para monitorear el uso de memoria y enviar una alerta si supera un cierto umbral
      *     <p>
-     *         Si el uso de memoria supera el valor del slider, se imprime un mensaje en la consola, se crea una alerta, se obtiene el manejador del cliente por su identificador y se envía la alert
-     *         a al cliente si el manejador del cliente no es nulo
-     *         Si no se pudo enviar la alerta al cliente, se imprime un mensaje en la consola
-     *         Se muestra una alerta en la interfaz de usuario
+     *         Si el uso de memoria supera el valor del slider, se imprime un mensaje en la consola, se crea una alerta, se obtiene el manejador del cliente por su identificador y se envía la alert<br>
+     *         a al cliente si el manejador del cliente no es nulo<br>
+     *         Si no se pudo enviar la alerta al cliente, se imprime un mensaje en la consola<br>
+     *         Se muestra una alerta en la interfaz de usuario<br>
      *         El hilo duerme durante 10 segundos
      *
      * @param memoria       the memoria
@@ -126,9 +126,9 @@ public class MonitoreoAlertas {
      * <p>
      *     Método para monitorear el uso de disco y enviar una alerta si supera un cierto umbral
      *     <p>
-     *         Si el uso de disco supera el valor del slider, se imprime un mensaje en la consola, se crea una alerta, se obtiene el manejador del cliente por su identificador y se envía la alerta al cliente si el manejador del cliente no es nulo
-     *         Si no se pudo enviar la alerta al cliente, se imprime un mensaje en la consola
-     *         Se muestra una alerta en la interfaz de usuario
+     *         Si el uso de disco supera el valor del slider, se imprime un mensaje en la consola, se crea una alerta, se obtiene el manejador del cliente por su identificador y se envía la alerta al cliente si el manejador del cliente no es nulo<br>
+     *         Si no se pudo enviar la alerta al cliente, se imprime un mensaje en la consola<br>
+     *         Se muestra una alerta en la interfaz de usuario<br>
      *         El hilo duerme durante 10 segundos
      *
      * @param disco         the disco

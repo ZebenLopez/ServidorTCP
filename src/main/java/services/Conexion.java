@@ -23,13 +23,13 @@ public class Conexion {
      * <p>
      *     Método que se encarga de establecer la conexión con los clientes
      *     <p>
-     *         Se crea un nuevo ServerSocket que escucha en el puerto 6789
+     *         Se crea un nuevo ServerSocket que escucha en el puerto 6789<br>
      *         Bucle infinito para aceptar conexiones de clientes
      *         <p>
-     *             Acepta una conexión de un cliente
-     *             Crea un nuevo ClientHandler para manejar la conexión del cliente
-     *             Inicia un nuevo hilo para el ClientHandler
-     *             Imprime un mensaje indicando que un cliente se ha conectado
+     *             Acepta una conexión de un cliente<br>
+     *             Crea un nuevo ClientHandler para manejar la conexión del cliente<br>
+     *             Inicia un nuevo hilo para el ClientHandler<br>
+     *             Imprime un mensaje indicando que un cliente se ha conectado<br>
      *             Imprime un mensaje de error si no se puede conectar al cliente
      *
      * @throws IOException the io exception
@@ -62,8 +62,8 @@ public class Conexion {
      * <p>
      *     Método para detener la conexión con los clientes
      *     <p>
-     *         Establece el valor de running a false
-     *         Cierra el ServerSocket
+     *         Establece el valor de running a false<br>
+     *         Cierra el ServerSocket<br>
      *         Interrumpe el hilo de conexión
      */
     public void stop() {

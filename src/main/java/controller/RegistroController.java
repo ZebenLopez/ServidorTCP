@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import models.User;
+import services.Ayuda;
 import view.HelloApplication;
 
 import java.io.*;
@@ -157,7 +158,8 @@ public class RegistroController {
     }
 
     public void abrirAyuda(KeyEvent keyEvent) {
-        // Abre el archivo de ayuda
-        services.Ayuda.abrirHelp();
+        if (keyEvent.getCode().toString().equals("F1")){
+            Ayuda.abrirHelp();
+        }
     }
 }

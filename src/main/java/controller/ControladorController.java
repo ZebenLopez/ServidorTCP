@@ -481,8 +481,9 @@ public class ControladorController {
     }
 
     public void abrirAyuda(KeyEvent keyEvent) {
-        // Abre el archivo de ayuda
-        services.Ayuda.abrirHelp();
+        if (keyEvent.getCode().toString().equals("F1")){
+            Ayuda.abrirHelp();
+        }
     }
 
 

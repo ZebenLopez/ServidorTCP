@@ -17,7 +17,7 @@ public class Ayuda {
     public static void abrirHelp() {
         Desktop desktop = Desktop.getDesktop();
         try {
-            File archivo = new File("src/main/resources/help/Ayuda.chm");
+            File archivo = new File("Ayuda.chm");
             desktop.open(archivo);
         } catch (IOException e) {
             e.printStackTrace();

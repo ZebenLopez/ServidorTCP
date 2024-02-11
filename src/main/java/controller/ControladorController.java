@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import net.sf.jasperreports.engine.JRException;
 import services.*;
@@ -15,7 +16,6 @@ import view.ControladorView;
 import view.HelloApplication;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -478,6 +478,11 @@ public class ControladorController {
 
     public void ayuda(ActionEvent actionEvent) {
         Ayuda.abrirHelp();
+    }
+
+    public void abrirAyuda(KeyEvent keyEvent) {
+        // Abre el archivo de ayuda
+        services.Ayuda.abrirHelp();
     }
 
 

@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import view.ControladorView;
 import view.RegistroView;
@@ -133,5 +134,10 @@ public class HelloController {
         alert.setHeaderText("Esta vez te ayudo por ser el/la profesor/a.\nPero no te acostumbres.\nTambién te puedes registrar.");
         alert.setContentText("Usuario: admin\nContraseña: admin");
         alert.showAndWait();
+    }
+
+    public void abrirAyuda(KeyEvent keyEvent) {
+        // Abre el archivo de ayuda
+        services.Ayuda.abrirHelp();
     }
 }
